@@ -31,7 +31,7 @@ function Machine({ compact = false }: { compact?: boolean }) {
 
 export default function Home() {
   const [transitioning, setTransitioning] = useState(false);
-  const [sent, setSent] = useState(false);
+  const [formState, setFormState] = useState<"idle" | "sending" | "success" | "error">("idle");
   const cursor = useRef<HTMLDivElement>(null);
   const progress = useRef<HTMLDivElement>(null);
 
@@ -66,9 +66,33 @@ export default function Home() {
     window.setTimeout(() => setTransitioning(false), 1450);
   };
 
-  const submit = (event: FormEvent<HTMLFormElement>) => {
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSent(true);
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const endpoint = window.location.hostname.endsWith("github.io")
+      ? "https://naumenko-demolition.daniilsedic.chatgpt.site/api/lead"
+      : "/api/lead";
+
+    setFormState("sending");
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          phone: data.get("phone"),
+          task: data.get("task"),
+          website: data.get("website"),
+          page: window.location.href,
+        }),
+      });
+      if (!response.ok) throw new Error("Lead delivery failed");
+      form.reset();
+      setFormState("success");
+    } catch {
+      setFormState("error");
+    }
   };
 
   return (
@@ -178,11 +202,20 @@ export default function Home() {
           <a className={styles.contactPhone} href="tel:+79853584978">+7 (985) 358-49-78 <span>↗</span></a>
         </div>
         <form onSubmit={submit} className={styles.form}>
+          <label className={styles.honeypot} aria-hidden="true">Ваш сайт<input name="website" tabIndex={-1} autoComplete="off" /></label>
           <label>Как к вам обращаться?<input required name="name" placeholder="Алексей" /></label>
           <label>Телефон<input required name="phone" type="tel" placeholder="+7 999 000-00-00" /></label>
-          <label>Что нужно демонтировать?<textarea name="task" placeholder="Квартира 70 м², полный демонтаж..." /></label>
-          <button type="submit">{sent ? "ЗАЯВКА ПРИНЯТА ✓" : "ПОЛУЧИТЬ РАСЧЁТ →"}</button>
-          <small>{sent ? "Это демонстрация формы — подключим отправку заявок при запуске." : "Нажимая кнопку, вы соглашаетесь с обработкой данных."}</small>
+          <label>Что нужно демонтировать?<textarea required name="task" placeholder="Квартира 70 м², полный демонтаж..." /></label>
+          <button type="submit" disabled={formState === "sending"}>
+            {formState === "sending" ? "ОТПРАВЛЯЕМ…" : formState === "success" ? "ЗАЯВКА ПРИНЯТА ✓" : "ПОЛУЧИТЬ РАСЧЁТ →"}
+          </button>
+          <small className={formState === "error" ? styles.formError : ""}>
+            {formState === "success"
+              ? "Заявка отправлена Александру в Telegram. Скоро он свяжется с вами."
+              : formState === "error"
+                ? "Не удалось отправить. Позвоните: +7 (985) 358-49-78."
+                : "Нажимая кнопку, вы соглашаетесь с обработкой данных."}
+          </small>
         </form>
       </section>
 

@@ -108,6 +108,9 @@
 .form { align-self: center; border-top: 1px solid #111; }
 .form label { display: block; padding-top: 23px; font: 10px var(--font-mono); text-transform: uppercase; letter-spacing: .1em; border-bottom: 1px solid #111; }
 .form input, .form textarea { width: 100%; border: 0; outline: 0; background: transparent; padding: 14px 0 22px; font: 28px var(--font-geist); color: #111; resize: none; }
+.honeypot { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.form button:disabled { cursor: wait; opacity: .7; }
+.formError { color: #a12222 !important; }
 .form textarea { min-height: 100px; }
 .form button { width: 100%; min-height: 80px; margin-top: 30px; border: 0; background: #111; color: #d9f64f; font-weight: 800; cursor: pointer; transition: transform .25s, background .25s; }
 .form button:hover { background: #222; transform: translateY(-3px); }
@@ -162,7 +165,8 @@
   .cursor { display: none; }
   .headerPhone { font-size: 10px; }
   .hero { min-height: 720px; }
-  .hero h1 { font-size: clamp(50px, 16vw, 82px); line-height: .82; margin-bottom: 16vh; }
+  .hero h1 { width: 100%; font-size: clamp(34px, 11.4vw, 56px); line-height: .86; letter-spacing: -.095em; margin-bottom: 16vh; }
+  .line { padding-right: .14em; white-space: nowrap; }
   .outline { margin-left: 0; }
   .heroBottom { grid-template-columns: 1fr; }
   .heroBottom p { display: none; }

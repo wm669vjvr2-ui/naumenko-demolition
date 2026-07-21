@@ -21,7 +21,7 @@
 .crmNav { min-height: 58px; padding: 0 28px; background: white; border-bottom: 1px solid #d7dfe3; display: flex; align-items: center; justify-content: space-between; }
 .crmNav > div { display: flex; align-items: center; align-self: stretch; gap: 28px; }
 .crmNav b { font-size: 20px; color: #24343f; margin-right: 10px; }
-.crmNav span { display: flex; align-items: center; height: 100%; font-size: 12px; cursor: pointer; }
+.crmNav button { display: flex; align-items: center; height: 100%; padding: 0; border: 0; background: none; color: #33434c; font: inherit; font-size: 12px; cursor: pointer; }
 .crmNav .tabActive { color: #2fa5dc; border-bottom: 3px solid #2fa5dc; }
 .crmNav a { color: #6c7b83; font-size: 11px; }
 .contentHeader { padding: 26px 28px 18px; display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 26px; }
@@ -38,6 +38,10 @@
 .tools button { height: 32px; padding: 0 14px; border: 1px solid #d4dde1; background: white; color: #62727b; border-radius: 2px; cursor: pointer; }
 .tools .kanban { color: #2b9fd4; border-color: #7dc5e6; }
 .tools > span { flex: 1; }
+.filterWrap { position: relative; }
+.filterMenu { position: absolute; z-index: 8; top: 38px; right: 0; width: 190px; padding: 6px; background: white; border: 1px solid #d4dde1; border-radius: 4px; box-shadow: 0 14px 35px #263b4650; }
+.filterMenu button { width: 100%; border: 0; text-align: left; }
+.filterMenu button:hover { background: #edf5f8; color: #238fbe; }
 .board { height: calc(100svh - 254px); padding: 0 28px 20px; display: flex; gap: 9px; overflow-x: auto; }
 .column { width: 260px; min-width: 260px; height: 100%; background: #e3e9ec; border-radius: 4px 4px 0 0; }
 .column > header { height: 57px; padding: 10px 11px; color: #53636c; background: color-mix(in srgb, var(--stage) 14%, white); border-top: 4px solid var(--stage); }
@@ -56,6 +60,29 @@
 .deal > div { margin-top: 13px; padding-top: 9px; border-top: 1px solid #edf0f1; display: grid; gap: 5px; font-size: 9px; color: #d27348; }
 .deal > div small { color: #9ba7ac; }
 .quickAdd { width: 100%; height: 35px; border: 1px dashed #aebbc1; background: transparent; color: #829097; font-size: 10px; cursor: pointer; }
+.listView { height: calc(100svh - 254px); margin: 0 28px 20px; overflow: auto; background: white; border: 1px solid #d8e0e4; }
+.listView > header, .listView > button { min-width: 900px; display: grid; grid-template-columns: 1.45fr 1fr .8fr .65fr 1.2fr; align-items: center; gap: 18px; text-align: left; }
+.listView > header { position: sticky; z-index: 2; top: 0; min-height: 42px; padding: 0 16px; background: #f5f8f9; color: #87949b; border-bottom: 1px solid #d8e0e4; font-size: 9px; text-transform: uppercase; }
+.listView > button { width: 100%; min-height: 72px; padding: 10px 16px; border: 0; border-bottom: 1px solid #e6ecef; background: white; color: #44545c; cursor: pointer; }
+.listView > button:hover { background: #f3f9fb; }
+.listView > button span { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.listView > button small { color: #87959b; font-size: 9px; }
+.listView > button b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.calendarView { height: calc(100svh - 254px); margin: 0 28px 20px; display: grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap: 10px; overflow: auto; }
+.calendarView > section { min-height: 210px; padding: 12px; background: white; border: 1px solid #d8e0e4; }
+.calendarView > section > header { display: flex; justify-content: space-between; margin-bottom: 12px; color: #89969c; font-size: 9px; }
+.calendarView > section > header b { color: #34464f; }
+.calendarView > section > button { width: 100%; min-height: 82px; margin-bottom: 8px; padding: 10px; display: flex; flex-direction: column; gap: 5px; text-align: left; border: 0; border-left: 4px solid var(--stage); background: #f6f9fa; color: #3c4d55; cursor: pointer; }
+.calendarView > section > button:hover { background: #edf5f7; }
+.calendarView small, .calendarView span { color: #849198; font-size: 9px; }
+.modulePanel { height: calc(100svh - 214px); padding: 8vh 8vw; background: linear-gradient(145deg, white, #e8eef1); }
+.modulePanel > span { color: #2fa5dc; font-size: 9px; letter-spacing: .14em; }
+.modulePanel h2 { margin: 14px 0; font-size: clamp(48px, 8vw, 110px); font-weight: 300; letter-spacing: -.07em; color: #2d3d49; }
+.modulePanel p { max-width: 530px; color: #718087; line-height: 1.6; }
+.modulePanel > div { display: flex; align-items: baseline; gap: 12px; margin: 40px 0; }
+.modulePanel > div b { font-size: 52px; color: #2fa5dc; }
+.modulePanel > div span { color: #718087; }
+.modulePanel > button { height: 42px; padding: 0 20px; border: 0; background: #57b957; color: white; font-weight: 700; cursor: pointer; }
 .drawer { position: fixed; z-index: 10; right: 0; top: 0; width: min(430px, 95vw); height: 100svh; background: white; box-shadow: -12px 0 40px #273b4650; display: flex; flex-direction: column; color: #394a52; animation: drawerIn .35s ease both; }
 .drawer > header { min-height: 55px; background: #2d3d49; color: #a9b6be; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; font-size: 10px; letter-spacing: .08em; }
 .drawer > header button { background: none; border: 0; color: white; font-size: 30px; cursor: pointer; }
@@ -82,7 +109,17 @@
 .drawer footer button { min-height: 42px; border: 1px solid #d7e0e4; background: white; color: #4a5b63; font-size: 9px; cursor: pointer; }
 .drawer footer button:last-child { background: #57b957; border-color: #57b957; color: white; font-weight: 700; }
 .drawer footer button:disabled { background: #aab5ba; border-color: #aab5ba; }
+.modalBackdrop { position: fixed; z-index: 30; inset: 0; display: grid; place-items: center; padding: 20px; background: #17252d99; backdrop-filter: blur(3px); }
+.modal { width: min(460px, 100%); padding: 24px; background: white; border-radius: 6px; box-shadow: 0 24px 70px #1b303c88; }
+.modal > header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; font-size: 18px; color: #2d3d49; }
+.modal > header button { border: 0; background: none; color: #7d8c93; font-size: 28px; cursor: pointer; }
+.modal p { color: #65757d; line-height: 1.6; }
+.modal a { color: #2a9fd4; }
+.modal > label { min-height: 46px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #e4eaed; cursor: pointer; }
+.modalSave { width: 100%; height: 42px; margin-top: 24px; border: 0; background: #57b957; color: white; font-weight: 700; cursor: pointer; }
+.toast { position: fixed; z-index: 40; left: 50%; bottom: 24px; transform: translateX(-50%); min-width: 260px; padding: 13px 20px; text-align: center; border-radius: 4px; background: #263945; color: white; box-shadow: 0 12px 35px #1e303a55; animation: toastIn .25s ease both; }
 @keyframes drawerIn { from { transform: translateX(100%); } }
+@keyframes toastIn { from { transform: translate(-50%, 20px); opacity: 0; } }
 
 @media (max-width: 900px) {
   .sidebar { width: 54px; flex-basis: 54px; }
@@ -91,10 +128,12 @@
   .topbar { grid-template-columns: 1fr minmax(180px, 300px); padding: 0 16px; }
   .topbar .help, .topbar .user { display: none; }
   .crmNav { padding: 0 16px; }
-  .crmNav span:nth-of-type(n+4), .crmNav a { display: none; }
+  .crmNav button:nth-of-type(n+4), .crmNav a { display: none; }
   .contentHeader { padding-left: 16px; padding-right: 16px; grid-template-columns: 1fr auto; }
   .stats { display: none; }
   .tools, .board { padding-left: 16px; padding-right: 16px; }
+  .listView, .calendarView { margin-left: 16px; margin-right: 16px; }
+  .calendarView { grid-template-columns: repeat(2, minmax(220px, 1fr)); }
 }
 
 @media (max-width: 600px) {
@@ -103,9 +142,12 @@
   .topbar { height: 58px; grid-template-columns: 1fr 1fr; }
   .crmNav { min-height: 50px; overflow: hidden; }
   .crmNav > div { gap: 16px; }
-  .crmNav span:nth-of-type(n+3) { display: none; }
+  .crmNav button:nth-of-type(n+3) { display: none; }
   .contentHeader { padding-top: 16px; }
   .contentHeader > button { padding: 0 10px; font-size: 9px; }
   .tools { overflow-x: auto; }
   .board { height: calc(100svh - 220px); }
+  .listView, .calendarView { height: calc(100svh - 220px); }
+  .calendarView { grid-template-columns: minmax(230px, 1fr); }
+  .filterMenu { position: fixed; top: 205px; right: 16px; }
 }
