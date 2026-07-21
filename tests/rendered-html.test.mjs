@@ -27,7 +27,13 @@ test("renders the CRM prototype", async () => {
   const response = await render("/crm");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /Основная воронка/);
-  assert.match(html, /Демонтаж квартиры 68 м/);
-  assert.match(html, /ДОБАВИТЬ СДЕЛКУ/);
+  assert.match(html, /Сводка бизнеса/);
+  assert.match(html, /ОТКРЫТЬ ВОРОНКУ/);
+  assert.match(html, /Обзор/);
+  assert.match(html, /Лиды/);
+  assert.match(html, /Контакты/);
+  assert.match(html, /Компании/);
+  assert.match(html, /Задачи/);
+  assert.match(html, /Чаты/);
+  assert.match(html, /Аналитика/);
 });
