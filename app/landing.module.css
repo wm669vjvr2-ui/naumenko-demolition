@@ -7,8 +7,7 @@
 .header nav { display: flex; gap: 32px; }
 .header nav a { transition: color .25s; }
 .header nav a:hover { color: #d9f64f; }
-.crmLink { justify-self: end; border: 1px solid #ffffff38; padding: 12px 14px; }
-.crmLink span { color: #d9f64f; margin-left: 12px; }
+.headerPhone { justify-self: end; color: #d9f64f; font-weight: 700; border-bottom: 1px solid #d9f64f66; padding-bottom: 5px; }
 
 .hero { height: max(760px, 100svh); min-height: 680px; position: relative; padding: 122px var(--pad) 42px; display: flex; flex-direction: column; justify-content: space-between; isolation: isolate; }
 .heroGrid, .noise { position: absolute; inset: 0; pointer-events: none; }
@@ -52,8 +51,8 @@
 .ticker span { margin: 0 24px; }
 
 .services { padding: 170px var(--pad) 130px; background: #d8d8d2; color: #101010; display: grid; grid-template-columns: .9fr 1.5fr; gap: 8vw; }
-.sectionHeading span, .projectHeader > span, .processIntro > span, .crmCopy > span { font: 11px var(--font-mono); letter-spacing: .12em; }
-.sectionHeading h2, .projectHeader h2, .processIntro h2, .crmCopy h2 { margin: 50px 0 28px; font-size: clamp(58px, 7.4vw, 118px); letter-spacing: -.08em; line-height: .82; }
+.sectionHeading span, .projectHeader > span, .processIntro > span { font: 11px var(--font-mono); letter-spacing: .12em; }
+.sectionHeading h2, .projectHeader h2, .processIntro h2 { margin: 50px 0 28px; font-size: clamp(58px, 7.4vw, 118px); letter-spacing: -.08em; line-height: .82; }
 .sectionHeading p { max-width: 380px; margin: 0; line-height: 1.55; color: #565650; }
 .serviceList { border-top: 1px solid #1a1a1a; }
 .serviceRow { min-height: 160px; display: grid; grid-template-columns: 52px 1fr 1fr 30px; align-items: center; gap: 28px; border-bottom: 1px solid #1a1a1a; transition: padding .35s, background .35s; }
@@ -99,20 +98,6 @@
 .process li b { font: 11px var(--font-mono); }
 .process li h3 { font-size: 25px; margin: 0; }
 .process li p { margin: 0; font-size: 13px; line-height: 1.5; color: #30302c; }
-
-.crmPromo { padding: 150px var(--pad); background: #101010; display: grid; grid-template-columns: 1.2fr .8fr; gap: 7vw; align-items: center; }
-.crmMock { min-height: 560px; background: #f4f6f7; border-radius: 12px; box-shadow: 0 50px 100px #000; transform: perspective(1200px) rotateY(5deg) rotateX(2deg); overflow: hidden; }
-.mockBar { height: 54px; background: #232d36; display: flex; align-items: center; gap: 8px; padding: 0 18px; color: #bdc8cf; font-size: 11px; }
-.mockBar i { width: 8px; height: 8px; border-radius: 50%; background: #69747c; }
-.mockBar span { margin-left: 14px; }
-.mockBoard { padding: 70px 25px 25px 84px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; height: 506px; background: linear-gradient(90deg, #2b3d49 0 58px, transparent 58px), linear-gradient(#edf1f3 1px, transparent 1px); background-size: auto, 100% 50px; }
-.mockBoard div { background: #e1e7ea; padding: 12px 8px; }
-.mockBoard b { color: #4a5961; font-size: 10px; text-transform: uppercase; }
-.mockBoard i { display: block; height: 96px; background: white; border-radius: 4px; margin-top: 18px; box-shadow: 0 3px 10px #50616a18; }
-.mockBoard .accentCard { border-left: 3px solid #57b957; }
-.crmCopy h2 { font-size: clamp(48px, 5.6vw, 88px); }
-.crmCopy p { color: #999; line-height: 1.6; max-width: 480px; }
-.crmCopy a { display: inline-flex; justify-content: space-between; gap: 34px; margin-top: 30px; padding-bottom: 12px; border-bottom: 1px solid #d9f64f; color: #d9f64f; font-size: 12px; letter-spacing: .08em; }
 
 .contact { min-height: 800px; padding: 150px var(--pad); background: #d8d8d2; color: #101010; display: grid; grid-template-columns: 1fr .8fr; gap: 10vw; }
 .contactCopy > span { font: 11px var(--font-mono); }
@@ -163,21 +148,19 @@
   .heroMachine { opacity: .6; right: -80px; bottom: 28%; }
   .heroBottom { grid-template-columns: 1fr 1fr; }
   .heroStat { display: none; }
-  .services, .process, .crmPromo, .contact { grid-template-columns: 1fr; }
+  .services, .process, .contact { grid-template-columns: 1fr; }
   .services { gap: 80px; }
   .projectGrid { grid-template-columns: 1fr; }
   .projectCard, .projectCard:nth-child(2) { min-height: 520px; }
   .projectHeader { display: block; }
   .projectHeader h2 { margin-top: 40px; text-align: left; }
-  .crmMock { min-height: 460px; }
-  .mockBoard { height: 406px; padding-left: 70px; }
   .footer { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 620px) {
   .site { --pad: 18px; }
   .cursor { display: none; }
-  .crmLink { font-size: 9px; padding: 10px; }
+  .headerPhone { font-size: 10px; }
   .hero { min-height: 720px; }
   .hero h1 { font-size: clamp(50px, 16vw, 82px); line-height: .82; margin-bottom: 16vh; }
   .outline { margin-left: 0; }
@@ -185,7 +168,7 @@
   .heroBottom p { display: none; }
   .demolishButton { justify-self: stretch; }
   .heroMachine { bottom: 29%; right: -100px; transform: scale(.8); }
-  .services, .projects, .process, .crmPromo, .contact { padding-top: 100px; padding-bottom: 100px; }
+  .services, .projects, .process, .contact { padding-top: 100px; padding-bottom: 100px; }
   .serviceRow { grid-template-columns: 34px 1fr 20px; gap: 12px; min-height: 125px; }
   .serviceRow p { display: none; }
   .statement { min-height: 680px; grid-template-columns: 46px 1fr; }
@@ -193,8 +176,6 @@
   .projectCard, .projectCard:nth-child(2) { min-height: 460px; }
   .process li { grid-template-columns: 40px 1fr; }
   .process li p { display: none; }
-  .crmMock { min-height: 360px; transform: none; }
-  .mockBoard { height: 306px; padding: 50px 10px 10px 45px; grid-template-columns: repeat(4, minmax(90px, 1fr)); overflow: hidden; }
   .contact { min-height: auto; }
   .form input, .form textarea { font-size: 22px; }
   .footer { grid-template-columns: 1fr; }

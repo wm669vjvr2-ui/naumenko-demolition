@@ -91,7 +91,7 @@ export default function Home() {
           <Link href="#projects">Объекты</Link>
           <Link href="#process">Как работаем</Link>
         </nav>
-        <Link className={styles.crmLink} href="/crm">CRM · ПРОТОТИП <span>↗</span></Link>
+        <a className={styles.headerPhone} href="tel:+79853584978">+7 (985) 358-49-78</a>
       </header>
 
       <section className={styles.hero} id="top">
@@ -170,21 +170,6 @@ export default function Home() {
         </ol>
       </section>
 
-      <section className={styles.crmPromo}>
-        <div className={`${styles.crmMock} ${styles.reveal}`}>
-          <div className={styles.mockBar}><i /><i /><i /><span>Битрикс24 · Сделки</span></div>
-          <div className={styles.mockBoard}>
-            {["Новые", "Замер", "Смета", "В работе"].map((stage, index) => <div key={stage}><b>{stage}</b><i /><i className={index === 2 ? styles.accentCard : ""} /></div>)}
-          </div>
-        </div>
-        <div className={`${styles.crmCopy} ${styles.reveal}`}>
-          <span>04 / ПОРЯДОК В ЗАЯВКАХ</span>
-          <h2>КАЖДАЯ ЗАЯВКА<br />ПОД КОНТРОЛЕМ.</h2>
-          <p>Параллельно с сайтом запускаем воронку в Битрикс24: обращения, замеры, сметы, задачи и оплаты в одном окне.</p>
-          <Link href="/crm">ОТКРЫТЬ CRM-ПРОТОТИП <b>↗</b></Link>
-        </div>
-      </section>
-
       <section className={styles.contact} id="contact">
         <div className={styles.contactCopy}>
           <span>ГОТОВЫ НАЧАТЬ?</span>
@@ -197,7 +182,7 @@ export default function Home() {
           <label>Телефон<input required name="phone" type="tel" placeholder="+7 999 000-00-00" /></label>
           <label>Что нужно демонтировать?<textarea name="task" placeholder="Квартира 70 м², полный демонтаж..." /></label>
           <button type="submit">{sent ? "ЗАЯВКА ПРИНЯТА ✓" : "ПОЛУЧИТЬ РАСЧЁТ →"}</button>
-          <small>{sent ? "Это демонстрация формы — подключим её напрямую к Битрикс24." : "Нажимая кнопку, вы соглашаетесь с обработкой данных."}</small>
+          <small>{sent ? "Это демонстрация формы — подключим отправку заявок при запуске." : "Нажимая кнопку, вы соглашаетесь с обработкой данных."}</small>
         </form>
       </section>
 
