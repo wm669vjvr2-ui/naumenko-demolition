@@ -31,7 +31,7 @@ const initialDeals: Deal[] = [
   { id: 1047, stage: "new", title: "Снести перегородку", contact: "Марина", phone: "+7 926 810-03-55", amount: 38000, source: "Авито", task: "Уточнить материал стены", date: "сегодня, 11:19" },
   { id: 1043, stage: "contact", title: "Офис после арендатора", contact: "ООО «Сфера»", phone: "+7 495 170-42-11", amount: 315000, source: "Яндекс", task: "Запросить план помещения", date: "вчера, 18:10" },
   { id: 1040, stage: "measure", title: "Дом 140 м² — полный разбор", contact: "Дмитрий К.", phone: "+7 903 544-11-70", amount: 680000, source: "Рекомендация", task: "Замер завтра в 10:00", date: "19 июл." },
-  { id: 1038, stage: "measure", title: "Демонтаж стяжки 92 м²", contact: "Ирина Романова", phone: "+7 916 333-18-21", amount: 126000, source: "Сайт", task: "Инженер: Науменко", date: "18 июл." },
+  { id: 1038, stage: "measure", title: "Демонтаж стяжки 92 м²", contact: "Ирина Романова", phone: "+7 916 333-18-21", amount: 126000, source: "Сайт", task: "Инженер: Александр Науменко", date: "18 июл." },
   { id: 1032, stage: "estimate", title: "Магазин 340 м²", contact: "Андрей / Retail Group", phone: "+7 985 311-88-09", amount: 890000, source: "Повторный", task: "Дожать согласование сметы", date: "17 июл." },
   { id: 1029, stage: "approve", title: "Квартира 54 м² до бетона", contact: "Николай", phone: "+7 925 610-17-04", amount: 149000, source: "Яндекс", task: "Отправить договор", date: "16 июл." },
   { id: 1021, stage: "work", title: "Склад — перегородки", contact: "АО «Вектор»", phone: "+7 495 801-34-50", amount: 440000, source: "Рекомендация", task: "Фотоотчёт до 18:00", date: "14 июл." },
@@ -77,10 +77,10 @@ export default function CrmPrototype() {
 
       <section className={styles.workspace}>
         <header className={styles.topbar}>
-          <div><b>НАУМЕНКО</b><span>Демонтажные работы</span></div>
+          <div><b>АЛЕКСАНДР НАУМЕНКО</b><span>Москва и Московская область</span></div>
           <label><span>⌕</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Поиск по сделкам" /></label>
           <button className={styles.help}>?</button>
-          <div className={styles.user}><i>Н</i><span>Науменко<br /><small>Администратор</small></span></div>
+          <div className={styles.user}><i>АН</i><span>Александр Науменко<br /><small>Администратор</small></span></div>
         </header>
 
         <div className={styles.crmNav}>
@@ -137,14 +137,14 @@ export default function CrmPrototype() {
           <div className={styles.stageTrack}>
             {stages.map((stage) => <i key={stage.id} className={stages.findIndex((s) => s.id === stage.id) <= stages.findIndex((s) => s.id === selected.stage) ? styles.done : ""} />)}
           </div>
-          <div className={styles.taskBox}><small>БЛИЖАЙШЕЕ ДЕЛО</small><b>{selected.task}</b><span>Сегодня · Ответственный: Науменко</span></div>
+          <div className={styles.taskBox}><small>БЛИЖАЙШЕЕ ДЕЛО</small><b>{selected.task}</b><span>Сегодня · Ответственный: Александр Науменко</span></div>
           <dl>
             <div><dt>Клиент</dt><dd>{selected.contact}</dd></div>
             <div><dt>Телефон</dt><dd>{selected.phone}</dd></div>
             <div><dt>Источник</dt><dd>{selected.source}</dd></div>
             <div><dt>Тип объекта</dt><dd>Жилое помещение</dd></div>
             <div><dt>Вывоз мусора</dt><dd>Да, включён</dd></div>
-            <div><dt>Ответственный</dt><dd>Науменко</dd></div>
+            <div><dt>Ответственный</dt><dd>Александр Науменко</dd></div>
           </dl>
           <div className={styles.timeline}><b>История</b><p><i /> Сделка создана · {selected.date}</p><p><i /> Запущен робот «Перезвонить»</p></div>
           <footer><button>ПОЗВОНИТЬ</button><button onClick={() => moveNext(selected)} disabled={selected.stage === "paid"}>{selected.stage === "paid" ? "СДЕЛКА ЗАВЕРШЕНА ✓" : "НА СЛЕДУЮЩУЮ СТАДИЮ →"}</button></footer>

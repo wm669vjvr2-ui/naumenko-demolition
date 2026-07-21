@@ -24,6 +24,8 @@
 .outline { color: transparent; -webkit-text-stroke: 1.5px #d8d8d2; margin-left: 7vw; }
 .heroBottom { position: relative; z-index: 4; display: grid; grid-template-columns: 1fr 1.2fr .55fr; align-items: end; gap: 30px; }
 .heroBottom p { margin: 0; max-width: 300px; font-size: 14px; line-height: 1.55; color: #a1a19d; }
+.heroBottom p strong { color: #d8d8d2; font-weight: 700; }
+.heroBottom p a { color: #d9f64f; }
 .demolishButton { width: min(100%, 440px); height: 82px; justify-self: center; border: 1px solid #d9f64f; color: #d9f64f; display: flex; align-items: center; justify-content: space-between; padding: 0 8px 0 28px; font-weight: 800; letter-spacing: .08em; font-size: 13px; transition: background .35s, color .35s, transform .35s; }
 .demolishButton b { width: 66px; height: 66px; display: grid; place-items: center; background: #d9f64f; color: #0a0a0a; font-size: 22px; }
 .demolishButton:hover { background: #d9f64f; color: #0a0a0a; transform: translateY(-4px); }
@@ -116,6 +118,8 @@
 .contactCopy > span { font: 11px var(--font-mono); }
 .contactCopy h2 { margin: 40px 0 30px; font-size: clamp(60px, 8vw, 126px); line-height: .82; letter-spacing: -.08em; }
 .contactCopy p { max-width: 340px; color: #5e5e58; line-height: 1.5; }
+.contactPhone { display: inline-flex; align-items: center; gap: 24px; margin-top: 28px; padding-bottom: 9px; border-bottom: 2px solid #111; font-size: clamp(20px, 2vw, 31px); font-weight: 700; letter-spacing: -.04em; }
+.contactPhone span { color: #718500; font-size: 18px; }
 .form { align-self: center; border-top: 1px solid #111; }
 .form label { display: block; padding-top: 23px; font: 10px var(--font-mono); text-transform: uppercase; letter-spacing: .1em; border-bottom: 1px solid #111; }
 .form input, .form textarea { width: 100%; border: 0; outline: 0; background: transparent; padding: 14px 0 22px; font: 28px var(--font-geist); color: #111; resize: none; }

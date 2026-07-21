@@ -6,8 +6,8 @@ const geist = Geist({ variable: "--font-geist", subsets: ["latin", "cyrillic"] }
 const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin", "cyrillic"] });
 
 export const metadata: Metadata = {
-  title: "НК/ДМ — демонтажные работы",
-  description: "Демонтаж квартир, домов и коммерческих помещений. Расчёт по фото за 15 минут.",
+  title: "Александр Науменко — демонтаж в Москве и области",
+  description: "Демонтаж квартир, домов и коммерческих помещений в Москве и Московской области. Расчёт по фото за 15 минут.",
   icons: { icon: "/favicon.svg" },
 };
 

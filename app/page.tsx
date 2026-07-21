@@ -97,13 +97,13 @@ export default function Home() {
       <section className={styles.hero} id="top">
         <div className={styles.heroGrid} aria-hidden="true" />
         <div className={styles.noise} aria-hidden="true" />
-        <div className={styles.heroEyebrow}><span /> ДЕМОНТАЖ · ГОРОД И ОБЛАСТЬ</div>
+        <div className={styles.heroEyebrow}><span /> АЛЕКСАНДР НАУМЕНКО · МОСКВА И ОБЛАСТЬ</div>
         <h1>
           <span className={styles.line}><i>ОСВОБОЖДАЕМ</i></span>
           <span className={`${styles.line} ${styles.outline}`}><i>ПРОСТРАНСТВО</i></span>
         </h1>
         <div className={styles.heroBottom}>
-          <p>Демонтаж любой сложности.<br />Смета фиксируется в договоре.<br />Мусор исчезает вместе со стенами.</p>
+          <p><strong>Александр Науменко</strong><br /><a href="tel:+79853584978">+7 (985) 358-49-78</a><br />Москва и Московская область</p>
           <a href="#services" onClick={(event) => demolishTo(event, "#services")} className={styles.demolishButton}>
             <span>СНЕСТИ ЭКРАН</span><b>↓</b>
           </a>
@@ -190,6 +190,7 @@ export default function Home() {
           <span>ГОТОВЫ НАЧАТЬ?</span>
           <h2>ПОКАЖИТЕ,<br />ЧТО НУЖНО<br />УБРАТЬ.</h2>
           <p>Предварительный расчёт по фотографиям — в течение 15 минут.</p>
+          <a className={styles.contactPhone} href="tel:+79853584978">+7 (985) 358-49-78 <span>↗</span></a>
         </div>
         <form onSubmit={submit} className={styles.form}>
           <label>Как к вам обращаться?<input required name="name" placeholder="Алексей" /></label>
@@ -202,8 +203,8 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <Link href="#top" className={styles.logo}>НК<span>/</span>ДМ</Link>
-        <p>ДЕМОНТАЖНЫЕ РАБОТЫ<br />В ГОРОДЕ И ОБЛАСТИ</p>
-        <a href="tel:+79990000000">+7 999 000-00-00</a>
+        <p>АЛЕКСАНДР НАУМЕНКО<br />МОСКВА И МОСКОВСКАЯ ОБЛАСТЬ</p>
+        <a href="tel:+79853584978">+7 (985) 358-49-78</a>
         <span>© 2026</span>
       </footer>
     </main>
