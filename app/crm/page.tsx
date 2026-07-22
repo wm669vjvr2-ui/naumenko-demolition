@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import styles from "./crm.module.css";
 
@@ -97,6 +97,18 @@ export default function CrmPrototype() {
   const [modal, setModal] = useState<Modal>(null);
   const [toast, setToast] = useState("");
 
+  useEffect(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem("naumenko_parser_leads") || "[]") as Lead[];
+      setLeads((current) => {
+        const known = new Set(current.map((lead) => lead.id));
+        return [...stored.filter((lead) => Number.isFinite(lead.id) && !known.has(lead.id)), ...current];
+      });
+    } catch {
+      // Invalid local prototype data should not prevent the CRM from opening.
+    }
+  }, []);
+
   const sources = useMemo(() => ["Все источники", ...Array.from(new Set(deals.map((deal) => deal.source)))], [deals]);
   const filteredDeals = useMemo(() => deals.filter((deal) => `${deal.title} ${deal.contact} ${deal.phone}`.toLowerCase().includes(query.toLowerCase()) && (source === "Все источники" || deal.source === source)), [deals, query, source]);
   const contacts = useMemo(() => {
@@ -187,7 +199,7 @@ export default function CrmPrototype() {
       <button onClick={() => chooseTab("Аналитика")}><small>КОНВЕРСИЯ</small><b>36%</b><span>+4% за месяц →</span></button>
     </div>
     <section className={styles.overviewPipeline}><header><div><b>ВОРОНКА ПРОДАЖ</b><span>Нажмите стадию, чтобы открыть сделки</span></div><strong>{money(total)}</strong></header><div>{stages.map((stage) => { const count = deals.filter((deal) => deal.stage === stage.id).length; return <button key={stage.id} onClick={() => openDeals()} style={{ "--stage": stage.color, "--width": `${Math.max(16, count * 24)}%` } as CSSProperties}><span>{stage.name}</span><b>{count}</b><i /></button>; })}</div></section>
-    <section className={styles.overviewBottom}><div><header><b>ПОСЛЕДНЯЯ АКТИВНОСТЬ</b><button onClick={() => chooseArea("Активность")}>Все события →</button></header>{activities.slice(0, 4).map((item) => <p key={item.id}><i /> <span><b>{item.title}</b>{item.text}</span><small>{item.time}</small></p>)}</div><div><header><b>БЫСТРЫЕ ДЕЙСТВИЯ</b></header><button onClick={addDeal}>+ Новая сделка</button><button onClick={addLead}>+ Новый лид</button><button onClick={() => chooseArea("Чаты")}>Открыть чаты →</button></div></section>
+    <section className={styles.overviewBottom}><div><header><b>ПОСЛЕДНЯЯ АКТИВНОСТЬ</b><button onClick={() => chooseArea("Активность")}>Все события →</button></header>{activities.slice(0, 4).map((item) => <p key={item.id}><i /> <span><b>{item.title}</b>{item.text}</span><small>{item.time}</small></p>)}</div><div><header><b>БЫСТРЫЕ ДЕЙСТВИЯ</b></header><Link href="/parser">⌖ Найти клиентов на карте →</Link><button onClick={addDeal}>+ Новая сделка</button><button onClick={addLead}>+ Новый лид</button><button onClick={() => chooseArea("Чаты")}>Открыть чаты →</button></div></section>
   </div>;
 
   const renderLeads = () => { const visible = leads.filter((lead) => (leadFilter === "Все" || (leadFilter === "Новые" ? lead.status === "new" : lead.status === "qualified")) && `${lead.title} ${lead.contact}`.toLowerCase().includes(query.toLowerCase())); return <div className={styles.dataScreen}><div className={styles.segmented}>{["Все", "Новые", "Квалифицированные"].map((filter) => <button key={filter} className={leadFilter === filter ? styles.segmentActive : ""} onClick={() => setLeadFilter(filter)}>{filter}</button>)}</div><div className={styles.leadTable}><header><span>Лид</span><span>Контакт</span><span>Источник</span><span>Возраст</span><span>Действия</span></header>{visible.map((lead) => <article key={lead.id}><div><small>ЛИД #{lead.id}</small><b>{lead.title}</b></div><div><b>{lead.contact}</b><span>{lead.phone}</span></div><span>{lead.source}</span><span>{lead.age}</span><div><a href={phoneHref(lead.phone)}>Позвонить</a><button onClick={() => acceptLead(lead)}>В работу →</button></div></article>)}{visible.length === 0 && <p className={styles.empty}>Здесь пока нет лидов.</p>}</div></div>; };
