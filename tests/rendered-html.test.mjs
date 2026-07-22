@@ -53,9 +53,9 @@ test("renders the map lead parser", async () => {
   const response = await render("/parser");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /ПАРСЕР КАРТ/);
-  assert.match(html, /ЗАПУСТИТЬ ПОИСК/);
-  assert.match(html, /Демоданные/);
+  assert.match(html, /Поиск клиентов/);
+  assert.match(html, /НАЙТИ КЛИЕНТОВ/);
+  assert.match(html, /Демо/);
   assert.match(html, /Строительные компании/);
 });
 
