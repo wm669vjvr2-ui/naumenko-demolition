@@ -111,9 +111,9 @@ export default function Home() {
       <header className={styles.header}>
         <Link href="#top" className={styles.logo}>НК<span>/</span>ДМ</Link>
         <nav>
-          <Link href="#services">Услуги</Link>
-          <Link href="#projects">Объекты</Link>
-          <Link href="#process">Как работаем</Link>
+          <Link href="#services">Наши услуги</Link>
+          <Link href="#projects">Наши объекты</Link>
+          <Link href="#process">Как мы работаем</Link>
         </nav>
         <a className={styles.headerPhone} href="tel:+79853584978">+7 (985) 358-49-78</a>
       </header>
