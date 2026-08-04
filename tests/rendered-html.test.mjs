@@ -27,10 +27,11 @@ test("renders the demolition landing page", async () => {
   const response = await render("/");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /Александр Науменко — демонтаж в Москве и области/);
-  assert.match(html, /ОСВОБОЖДАЕМ/);
-  assert.match(html, /ПРОСТРАНСТВО/);
-  assert.match(html, /\+7 \(985\) 358-49-78/);
+  assert.match(html, /Демонтаж под ключ в Москве и области/);
+  assert.match(html, /Наши услуги/);
+  assert.match(html, /Демонтаж сантехнической кабины/);
+  assert.match(html, /Демонтаж коммерческих помещений/);
+  assert.match(html, /\+7 985 358-49-78/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 

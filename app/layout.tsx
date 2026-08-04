@@ -6,9 +6,25 @@ const geist = Geist({ variable: "--font-geist", subsets: ["latin", "cyrillic"] }
 const mono = Geist_Mono({ variable: "--font-mono", subsets: ["latin", "cyrillic"] });
 
 export const metadata: Metadata = {
-  title: "Александр Науменко — демонтаж в Москве и области",
-  description: "Демонтаж квартир, домов и коммерческих помещений в Москве и Московской области. Расчёт по фото за 15 минут.",
-  icons: { icon: "/favicon.svg" },
+  metadataBase: new URL("https://wm669vjvr2-ui.github.io/naumenko-demolition/"),
+  title: "Демонтаж под ключ в Москве и области",
+  description: "Демонтаж квартир, стен, стяжки, сантехкабин, ванных комнат и коммерческих помещений. Предварительная оценка по фото в Telegram.",
+  keywords: ["демонтаж Москва", "демонтаж квартиры", "демонтаж стен", "демонтаж под ключ", "вывоз строительного мусора"],
+  icons: {
+    icon: "https://wm669vjvr2-ui.github.io/naumenko-demolition/logo.jpg",
+    apple: "https://wm669vjvr2-ui.github.io/naumenko-demolition/logo.jpg",
+  },
+  openGraph: {
+    type: "website",
+    locale: "ru_RU",
+    title: "Демонтаж под ключ в Москве и МО",
+    description: "Квартиры, коммерческие помещения и отдельные конструкции. Расчёт по фото в Telegram.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Демонтаж под ключ в Москве и МО",
+    description: "Предварительная оценка демонтажа по фото в Telegram.",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
