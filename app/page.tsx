@@ -152,8 +152,8 @@ export default function Home() {
           <a href="#projects">Объекты</a>
           <a href="#process">Этапы</a>
           <a href="#faq">Вопросы</a>
+          <a href="#estimate">Расчёт</a>
         </nav>
-        <a className={styles.headerEstimate} href="#estimate" aria-label="Перейти к расчёту стоимости">Расчёт <span>↓</span></a>
       </header>
 
       <section className={styles.hero} id="top">
@@ -377,17 +377,6 @@ export default function Home() {
           {faq.map(([question, answer], index) => (
             <details key={question}><summary><b>0{index + 1}</b><span>{question}</span><i>+</i></summary><p>{answer}</p></details>
           ))}
-        </div>
-      </section>
-
-      <section className={styles.finalCta} id="contacts">
-        <div>
-          <span>Отдельная вкладка</span>
-          <h2>Расчёт<br />стоимости</h2>
-        </div>
-        <div className={styles.finalActions}>
-          <p>Укажите услугу, площадь и адрес объекта. Форма подготовит заявку и откроет её для отправки.</p>
-          <a className={styles.finalEstimateLink} href="#estimate">Открыть расчёт <span>↓</span></a>
         </div>
       </section>
 
