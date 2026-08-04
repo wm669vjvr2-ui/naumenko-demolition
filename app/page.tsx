@@ -13,48 +13,64 @@ const services = [
     title: "Демонтаж стен и перегородок",
     text: "Кирпич, пеноблок, гипсокартон и ненесущие бетонные конструкции.",
     tag: "стены",
+    image: "./project-apartment.jpg",
+    imageAlt: "Подготовленное помещение после демонтажа перегородок",
   },
   {
     number: "02",
     title: "Демонтаж сантехнической кабины",
     text: "Полный разбор кабины с сохранением стояков и общедомовых коммуникаций.",
     tag: "санузел",
+    image: "./project-bathroom.jpg",
+    imageAlt: "Помещение ванной комнаты перед демонтажными работами",
   },
   {
     number: "03",
     title: "Демонтаж стяжки",
     text: "Снимаем старую стяжку, собираем бой в мешки и готовим основание.",
     tag: "пол",
+    image: "./hero-interior.jpg",
+    imageAlt: "Основание пола во время внутреннего демонтажа",
   },
   {
     number: "04",
     title: "Демонтаж потолочных конструкций",
     text: "Натяжные, подвесные, реечные потолки и сложные каркасы.",
     tag: "потолок",
+    image: "./project-commercial.jpg",
+    imageAlt: "Потолочные конструкции коммерческого помещения",
   },
   {
     number: "05",
     title: "Демонтаж квартиры под ключ",
     text: "Комплексный разбор до бетона: отделка, перегородки, сантехника и вывоз.",
     tag: "под ключ",
+    image: "./hero-interior.jpg",
+    imageAlt: "Квартира в процессе комплексного демонтажа",
   },
   {
     number: "06",
     title: "Демонтаж ванной комнаты",
     text: "Плитка, сантехника, короба и старая разводка — аккуратно и поэтапно.",
     tag: "ванная",
+    image: "./project-bathroom.jpg",
+    imageAlt: "Ванная комната перед аккуратным демонтажом",
   },
   {
     number: "07",
     title: "Демонтаж квартиры",
     text: "Частичный или полный демонтаж под новый ремонт и перепланировку.",
     tag: "квартира",
+    image: "./project-apartment.jpg",
+    imageAlt: "Квартира после демонтажа старой отделки",
   },
   {
     number: "08",
     title: "Демонтаж коммерческих помещений",
     text: "Магазины, салоны, склады и другие помещения: перегородки, потолки и полы.",
     tag: "коммерция",
+    image: "./project-commercial.jpg",
+    imageAlt: "Коммерческое помещение для демонтажных работ",
   },
 ];
 
@@ -82,7 +98,7 @@ export default function Home() {
   const [selectedService, setSelectedService] = useState(services[4].title);
   const [openedTelegram, setOpenedTelegram] = useState(false);
   const [serviceSlide, setServiceSlide] = useState(0);
-  const serviceViewport = useRef<HTMLDivElement>(null);
+  const serviceTouchStart = useRef<number | null>(null);
 
   const directTelegram = useMemo(
     () => telegramUrl("Здравствуйте! Хочу рассчитать стоимость демонтажа. Подскажите, какие фото и данные прислать?"),
@@ -94,19 +110,16 @@ export default function Home() {
     document.querySelector("#estimate")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const scrollServices = (direction: -1 | 1) => {
-    const viewport = serviceViewport.current;
-    const card = viewport?.querySelector<HTMLElement>("article");
-    if (!viewport || !card) return;
-    viewport.scrollBy({ left: direction * (card.offsetWidth + 14), behavior: "smooth" });
+  const moveServices = (direction: -1 | 1) => {
+    setServiceSlide((current) => (current + direction + services.length) % services.length);
   };
 
-  const updateServiceSlide = () => {
-    const viewport = serviceViewport.current;
-    const card = viewport?.querySelector<HTMLElement>("article");
-    if (!viewport || !card) return;
-    const next = Math.round(viewport.scrollLeft / (card.offsetWidth + 14));
-    setServiceSlide(Math.max(0, Math.min(services.length - 1, next)));
+  const serviceOffset = (index: number) => {
+    let offset = index - serviceSlide;
+    const half = Math.floor(services.length / 2);
+    if (offset > half) offset -= services.length;
+    if (offset < -half) offset += services.length;
+    return offset;
   };
 
   const submitEstimate = (event: FormEvent<HTMLFormElement>) => {
@@ -188,29 +201,78 @@ export default function Home() {
 
       <section className={styles.services} id="services">
         <div className={styles.servicesHeading}>
-          <div className={styles.sectionLabel}>Каталог / 02</div>
-          <h2>Наши услуги</h2>
-          <p>В каталоге — восемь направлений из вашего списка. Нажмите нужное, и оно сразу появится в заявке.</p>
+          <h2>Наши услуги демонтажа</h2>
         </div>
-        <div className={styles.carouselBar}>
-          <span><b>{String(serviceSlide + 1).padStart(2, "0")}</b> / {String(services.length).padStart(2, "0")}</span>
-          <div>
-            <button type="button" onClick={() => scrollServices(-1)} aria-label="Предыдущая услуга">←</button>
-            <button type="button" onClick={() => scrollServices(1)} aria-label="Следующая услуга">→</button>
+        <div
+          className={styles.serviceCarousel}
+          role="region"
+          aria-roledescription="карусель"
+          aria-label="Каталог услуг демонтажа"
+          tabIndex={0}
+          onKeyDown={(event) => {
+            if (event.key === "ArrowLeft") moveServices(-1);
+            if (event.key === "ArrowRight") moveServices(1);
+          }}
+          onTouchStart={(event) => { serviceTouchStart.current = event.changedTouches[0]?.clientX ?? null; }}
+          onTouchEnd={(event) => {
+            const start = serviceTouchStart.current;
+            const end = event.changedTouches[0]?.clientX;
+            serviceTouchStart.current = null;
+            if (start == null || end == null || Math.abs(start - end) < 42) return;
+            moveServices(start > end ? 1 : -1);
+          }}
+        >
+          <div className={styles.serviceStage}>
+            {services.map((service, index) => {
+              const offset = serviceOffset(index);
+              return (
+                <article
+                  className={styles.serviceCard}
+                  data-offset={offset}
+                  aria-hidden={offset !== 0}
+                  aria-label={`${index + 1} из ${services.length}: ${service.title}`}
+                  key={service.number}
+                >
+                  <div className={styles.serviceContent}>
+                    <div className={styles.serviceTop}><span>{service.number}</span><b>{service.tag}</b></div>
+                    <div className={styles.serviceTicks} aria-hidden="true"><i /><i /><i /><i /><i /></div>
+                    <h3>{service.title}</h3>
+                    <p>{service.text}</p>
+                    <button
+                      type="button"
+                      tabIndex={offset === 0 ? 0 : -1}
+                      onClick={() => chooseService(service.title)}
+                      aria-label={`Выбрать услугу: ${service.title}`}
+                    >
+                      Рассчитать услугу <span>↗</span>
+                    </button>
+                  </div>
+                  <div className={styles.serviceVisual}>
+                    <img src={service.image} alt={service.imageAlt} />
+                    <strong>{service.number}</strong>
+                  </div>
+                </article>
+              );
+            })}
           </div>
-        </div>
-        <div className={styles.serviceViewport} ref={serviceViewport} onScroll={updateServiceSlide}>
-          <div className={styles.serviceTrack}>
-            {services.map((service) => (
-              <article className={styles.serviceCard} key={service.number}>
-                <div className={styles.serviceTop}><span>{service.number}</span><b>{service.tag}</b></div>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-                <button type="button" onClick={() => chooseService(service.title)} aria-label={`Выбрать услугу: ${service.title}`}>
-                  Выбрать услугу <span>↘</span>
-                </button>
-              </article>
-            ))}
+          <div className={styles.serviceNavigation}>
+            <span className={styles.serviceCounter} aria-live="polite">
+              {serviceSlide + 1} / {services.length}
+            </span>
+            <button className={styles.servicePrev} type="button" onClick={() => moveServices(-1)} aria-label="Предыдущая услуга">‹</button>
+            <button className={styles.serviceNext} type="button" onClick={() => moveServices(1)} aria-label="Следующая услуга">›</button>
+            <div className={styles.serviceDots} aria-label="Выбор услуги">
+              {services.map((service, index) => (
+                <button
+                  type="button"
+                  className={index === serviceSlide ? styles.serviceDotActive : undefined}
+                  onClick={() => setServiceSlide(index)}
+                  aria-label={`Показать услугу ${index + 1}: ${service.title}`}
+                  aria-current={index === serviceSlide ? "true" : undefined}
+                  key={service.number}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
