@@ -153,10 +153,7 @@ export default function Home() {
           <a href="#process">Этапы</a>
           <a href="#faq">Вопросы</a>
         </nav>
-        <div className={styles.headerContact}>
-          <span>Москва и область</span>
-          <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>
-        </div>
+        <a className={styles.headerEstimate} href="#estimate" aria-label="Перейти к расчёту стоимости">Расчёт <span>↓</span></a>
       </header>
 
       <section className={styles.hero} id="top">
@@ -166,17 +163,7 @@ export default function Home() {
           <div className={styles.eyebrow}><span /> Москва и Московская область</div>
           <h1>Демонтаж<br /><em>под ключ</em></h1>
           <p>Квартиры, ванные комнаты, коммерческие помещения, стены и стяжка. Разберём, упакуем и вывезем — по согласованной смете.</p>
-          <div className={styles.heroActions}>
-            <a className={styles.primaryButton} href={directTelegram} target="_blank" rel="noreferrer">Рассчитать в Telegram <span>↗</span></a>
-            <a className={styles.textButton} href={PHONE_HREF}>Позвонить {PHONE_DISPLAY}</a>
-          </div>
         </div>
-        <aside className={styles.heroPanel}>
-          <span>Предварительная оценка</span>
-          <strong>по фото</strong>
-          <p>Пришлите фотографии и площадь — соберём исходные данные для расчёта.</p>
-          <a href="#estimate">Заполнить за 1 минуту ↓</a>
-        </aside>
         <div className={styles.heroIndex}>01 / 08</div>
       </section>
 
@@ -414,8 +401,6 @@ export default function Home() {
         <div><a href={PHONE_HREF}>{PHONE_DISPLAY}</a><a href={directTelegram} target="_blank" rel="noreferrer">Telegram ↗</a></div>
         <small>© 2026 · Фото прототипа: <a href="https://unsplash.com/photos/Te48TPzdcU8" target="_blank" rel="noreferrer">Milivoj Kuhar</a>, <a href="https://unsplash.com/photos/pBZBbCqyW8M" target="_blank" rel="noreferrer">Steffen Lemmerzahl</a>, <a href="https://unsplash.com/photos/3nROCRjZiFQ" target="_blank" rel="noreferrer">Razlan Hanafiah</a>.</small>
       </footer>
-
-      <a className={styles.mobileTelegram} href={directTelegram} target="_blank" rel="noreferrer">Рассчитать в Telegram <span>↗</span></a>
     </main>
   );
 }

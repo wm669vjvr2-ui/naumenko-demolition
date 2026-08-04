@@ -34,8 +34,10 @@ test("renders the demolition landing page", async () => {
   assert.match(html, /Объекты \/ 05/);
   assert.match(html, /528/);
   assert.match(html, /объектов в Москве и Московской области/);
+  assert.match(html, /Перейти к расчёту стоимости/);
   assert.match(html, /\+7 985 358-49-78/);
   assert.doesNotMatch(html, /Типы объектов \/ 03|Работаем там, где нужен аккуратный разбор/);
+  assert.doesNotMatch(html, /Рассчитать в Telegram|Позвонить \+7 985|Предварительная оценка/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 
