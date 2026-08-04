@@ -277,17 +277,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.objects}>
-        <div className={styles.sectionLabel}>Типы объектов / 03</div>
-        <h2>Работаем там, где нужен аккуратный разбор.</h2>
-        <div className={styles.objectList}>
-          {[
-            "Квартиры во вторичке", "Новостройки", "Ванные и санузлы", "Магазины и салоны",
-            "Склады", "Коммерческие помещения", "Частные помещения", "Отдельные конструкции",
-          ].map((item, index) => <span key={item}><b>0{index + 1}</b>{item}</span>)}
-        </div>
-      </section>
-
       <section className={styles.estimate} id="estimate">
         <div className={styles.estimateCopy}>
           <div className={styles.sectionLabel}>Расчёт / 04</div>
@@ -325,28 +314,52 @@ export default function Home() {
         <div className={styles.projectsHeader}>
           <div>
             <div className={styles.sectionLabel}>Объекты / 05</div>
-            <h2>Как будет выглядеть портфолио</h2>
+            <h2>География работ и фотоотчёты</h2>
           </div>
-          <p>В прототипе стоят тематические фотозаглушки. Перед запуском заменим их на ваши реальные объекты, сроки, стоимость и видео.</p>
+          <p>Слева отмечены выполненные объекты по Москве и области. Справа — фотографии работ; отзывы и похожие примеры отправим по запросу.</p>
         </div>
-        <div className={styles.projectGrid}>
-          <article className={`${styles.projectCard} ${styles.projectWide}`}>
-            <img src="./project-apartment.jpg" alt="Квартира во время демонтажа" />
-            <div><span>Квартира</span><h3>Комплексный демонтаж до бетона</h3><p>Фото · сроки · состав работ · результат</p></div>
-          </article>
-          <article className={styles.projectCard}>
-            <img src="./project-bathroom.jpg" alt="Помещение во время ремонтных работ" />
-            <div><span>Ванная</span><h3>Разбор сантехкабины</h3><p>До / после</p></div>
-          </article>
-          <article className={styles.projectCard}>
-            <img src="./project-commercial.jpg" alt="Коммерческое помещение перед внутренним демонтажом" />
-            <div><span>Коммерческое помещение</span><h3>Демонтаж перегородок и потолка</h3><p>Фотоотчёт по этапам</p></div>
-          </article>
-          <article className={styles.videoCard}>
-            <span className={styles.play}>▶</span>
-            <div><span>Видео с объектов</span><h3>Покажем процесс, а не обещания</h3></div>
-            <a href={telegramUrl("Здравствуйте! Хочу посмотреть видео с ваших объектов по демонтажу.")} target="_blank" rel="noreferrer">Запросить видео ↗</a>
-          </article>
+        <div className={styles.portfolioGrid}>
+          <div className={styles.portfolioMap}>
+            <div className={styles.mapCircle} aria-label="Карта выполненных объектов в Москве и Московской области">
+              <img className={styles.mapImage} src="./moscow-region-map.png" alt="Карта Москвы и Московской области" />
+              <span className={styles.mapDotField} aria-hidden="true" />
+              <span className={styles.mapHotspots} aria-hidden="true" />
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinNorth}`}><img src="./project-commercial.jpg" alt="Объект на севере Москвы" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinNorthWest}`}><img src="./project-bathroom.jpg" alt="Объект на северо-западе Москвы" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinWest}`}><img src="./project-apartment.jpg" alt="Объект на западе Москвы" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinEast}`}><img src="./project-bathroom.jpg" alt="Объект на востоке Москвы" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinSouth}`}><img src="./hero-interior.jpg" alt="Объект на юге Москвы" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinSouthWest}`}><img src="./project-commercial.jpg" alt="Объект на юго-западе Москвы" /></span>
+              <span className={styles.mapCenterPin} aria-label="Москва"><b>Д</b></span>
+            </div>
+            <div className={styles.mapCounter}>
+              <strong>528</strong>
+              <span>объектов в Москве и Московской области</span>
+              <small>уже сделали</small>
+            </div>
+            <a className={styles.mapCredit} href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors</a>
+          </div>
+
+          <div className={styles.portfolioStories}>
+            <article className={`${styles.portfolioPhoto} ${styles.portfolioPhotoLarge}`}>
+              <img src="./project-commercial.jpg" alt="Демонтаж коммерческого помещения" />
+              <div><span>Коммерческое помещение</span><h3>Перегородки, потолок и подготовка к ремонту</h3></div>
+            </article>
+            <article className={styles.portfolioPhoto}>
+              <img src="./project-apartment.jpg" alt="Демонтаж в квартире" />
+              <div><span>Квартира</span><h3>Демонтаж до бетона</h3></div>
+            </article>
+            <article className={styles.portfolioPhoto}>
+              <img src="./project-bathroom.jpg" alt="Демонтаж ванной комнаты" />
+              <div><span>Ванная</span><h3>Разбор сантехкабины</h3></div>
+            </article>
+            <article className={styles.portfolioReviews}>
+              <span>Фото и отзывы</span>
+              <h3>Покажем похожие объекты</h3>
+              <p>Пришлём в Telegram фото до и после, состав работ и отзывы по вашему типу демонтажа.</p>
+              <a href={telegramUrl("Здравствуйте! Пришлите, пожалуйста, фото выполненных объектов и отзывы по похожему демонтажу.")} target="_blank" rel="noreferrer">Запросить подборку ↗</a>
+            </article>
+          </div>
         </div>
       </section>
 

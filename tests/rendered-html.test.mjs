@@ -31,7 +31,11 @@ test("renders the demolition landing page", async () => {
   assert.match(html, /Наши услуги/);
   assert.match(html, /Демонтаж сантехнической кабины/);
   assert.match(html, /Демонтаж коммерческих помещений/);
+  assert.match(html, /Объекты \/ 05/);
+  assert.match(html, /528/);
+  assert.match(html, /объектов в Москве и Московской области/);
   assert.match(html, /\+7 985 358-49-78/);
+  assert.doesNotMatch(html, /Типы объектов \/ 03|Работаем там, где нужен аккуратный разбор/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 });
 
