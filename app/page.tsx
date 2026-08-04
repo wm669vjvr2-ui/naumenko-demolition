@@ -382,13 +382,12 @@ export default function Home() {
 
       <section className={styles.finalCta} id="contacts">
         <div>
-          <span>Есть объект?</span>
-          <h2>Пришлите фото.<br />Начнём с расчёта.</h2>
+          <span>Отдельная вкладка</span>
+          <h2>Расчёт<br />стоимости</h2>
         </div>
         <div className={styles.finalActions}>
-          <a className={styles.primaryButton} href={directTelegram} target="_blank" rel="noreferrer">Написать в Telegram <span>↗</span></a>
-          <a className={styles.finalPhone} href={PHONE_HREF}>{PHONE_DISPLAY}</a>
-          <p>Москва и Московская область<br />Ежедневно, время выезда — по договорённости</p>
+          <p>Укажите услугу, площадь и адрес объекта. Форма подготовит заявку и откроет её для отправки.</p>
+          <a className={styles.finalEstimateLink} href="#estimate">Открыть расчёт <span>↓</span></a>
         </div>
       </section>
 

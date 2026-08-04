@@ -227,13 +227,14 @@
 .faqList details[open] summary i { transform: rotate(45deg); }
 .faqList details p { margin: 0; padding: 0 40px 30px 65px; max-width: 780px; color: #69635c; line-height: 1.65; }
 
-.finalCta { padding: 130px var(--pad); display: grid; grid-template-columns: 1.25fr .75fr; gap: 8vw; background: var(--orange); color: white; }
+.finalCta { padding: 110px var(--pad); display: grid; grid-template-columns: 1.1fr .9fr; align-items: end; gap: 8vw; background: var(--orange); color: white; }
 .finalCta > div > span { font: 700 10px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
-.finalCta h2 { margin: 32px 0 0; font-size: clamp(63px, 8vw, 132px); line-height: .82; letter-spacing: -.085em; text-transform: uppercase; }
+.finalCta h2 { margin: 28px 0 0; font-size: clamp(58px, 7vw, 108px); line-height: .82; letter-spacing: -.075em; text-transform: uppercase; }
 .finalActions { align-self: end; }
-.finalActions .primaryButton { background: var(--ink); }
-.finalPhone { display: block; width: max-content; margin-top: 30px; padding-bottom: 8px; border-bottom: 2px solid white; font-size: clamp(24px, 2.4vw, 38px); font-weight: 850; letter-spacing: -.04em; }
-.finalActions p { margin: 26px 0 0; color: rgba(255,255,255,.72); font-size: 12px; line-height: 1.6; }
+.finalActions p { max-width: 520px; margin: 0 0 30px; color: rgba(255,255,255,.78); font-size: 14px; line-height: 1.65; }
+.finalEstimateLink { min-height: 66px; width: max-content; padding: 0 8px 0 24px; display: inline-flex; align-items: center; gap: 28px; background: var(--ink); color: white; font-size: 12px; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; transition: transform .2s, background .2s; }
+.finalEstimateLink span { width: 50px; height: 50px; display: grid; place-items: center; background: rgba(255,255,255,.08); font-size: 20px; }
+.finalEstimateLink:hover { background: #292929; transform: translateY(-3px); }
 
 .footer { min-height: 230px; padding: 46px var(--pad); display: grid; grid-template-columns: .8fr 1fr .55fr; align-items: start; gap: 50px; background: #0e0e0e; color: white; }
 .footer > p { max-width: 420px; margin: 6px 0 0; color: rgba(255,255,255,.5); font-size: 12px; line-height: 1.6; }
@@ -301,6 +302,7 @@
   .faqList details p { padding-left: 40px; }
   .finalCta { gap: 50px; }
   .finalCta h2 { font-size: 58px; }
+  .finalActions p { margin-bottom: 24px; }
   .footer { grid-template-columns: 1fr; gap: 30px; }
   .footer > small { grid-column: auto; }
 }
