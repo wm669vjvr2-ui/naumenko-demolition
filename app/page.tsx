@@ -145,6 +145,7 @@ export default function Home() {
       <header className={styles.header}>
         <a className={styles.brand} href="#top" aria-label="Демонтаж под ключ — наверх">
           <span className={styles.brandText}>Демонтаж<br /><small>под ключ</small></span>
+          <span className={styles.brandLocation}>Москва и<br />Московская область</span>
         </a>
         <nav aria-label="Основная навигация">
           <a href="#services">Услуги</a>

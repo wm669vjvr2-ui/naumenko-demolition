@@ -28,6 +28,7 @@ test("renders the demolition landing page", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /Демонтаж под ключ в Москве и области/);
+  assert.match(html, /Москва и.*Московская область/s);
   assert.match(html, /Наши услуги/);
   assert.match(html, /Демонтаж сантехнической кабины/);
   assert.match(html, /Демонтаж коммерческих помещений/);

@@ -32,6 +32,7 @@
 .brand { display: inline-flex; align-items: center; width: max-content; }
 .brandText { font-size: 15px; font-weight: 900; line-height: .9; letter-spacing: .04em; text-transform: uppercase; }
 .brandText small { color: var(--orange); font: 700 8px/1.1 var(--font-mono); letter-spacing: .22em; }
+.brandLocation { margin-left: 18px; padding-left: 18px; border-left: 1px solid rgba(255,255,255,.32); color: rgba(255,255,255,.62); font: 700 9px/1.45 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
 .header nav { justify-self: end; display: flex; gap: clamp(18px, 2.3vw, 40px); font-size: 12px; font-weight: 650; }
 .header nav a { position: relative; }
 .header nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -8px; height: 2px; background: var(--orange); transition: right .25s; }
@@ -243,6 +244,7 @@
   .site { --pad: 18px; }
   .header { min-height: 76px; gap: 12px; }
   .brandText { font-size: 12px; }
+  .brandLocation { margin-left: 11px; padding-left: 11px; font-size: 7px; }
   .header nav { display: none; }
   .hero { min-height: 700px; display: block; padding-top: 144px; padding-bottom: 64px; }
   .hero::before { inset: 76px auto 0 72%; }
