@@ -144,7 +144,6 @@ export default function Home() {
     <main className={styles.site}>
       <header className={styles.header}>
         <a className={styles.brand} href="#top" aria-label="Демонтаж под ключ — наверх">
-          <span className={styles.brandMark}><img src="./logo.jpg" alt="Демонтаж под ключ" /></span>
           <span className={styles.brandText}>Демонтаж<br /><small>под ключ</small></span>
         </a>
         <nav aria-label="Основная навигация">
@@ -382,7 +381,6 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <a className={styles.brand} href="#top">
-          <span className={styles.brandMark}><img src="./logo.jpg" alt="" /></span>
           <span className={styles.brandText}>Демонтаж<br /><small>под ключ</small></span>
         </a>
         <p>Демонтаж квартир, коммерческих помещений и отдельных конструкций в Москве и Московской области.</p>
