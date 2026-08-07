@@ -295,11 +295,11 @@ export default function Home() {
                     <div className={styles.serviceTop}><span>{service.number}</span><b>{service.tag}</b></div>
                     <div className={styles.serviceTicks} aria-hidden="true"><i /><i /><i /><i /><i /></div>
                     <h3>{service.title}</h3>
-                    <p>{service.text}</p>
                     <div className={styles.servicePrice}>
                       <span>Стоимость услуги</span>
                       <strong>{service.price}</strong>
                     </div>
+                    <p>{service.text}</p>
                   </div>
                   <div className={styles.serviceVisual}>
                     <img src={service.image} alt={service.imageAlt} loading="lazy" decoding="async" />
