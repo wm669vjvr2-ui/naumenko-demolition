@@ -229,7 +229,8 @@ export default function Home() {
         <div className={styles.heroShade} />
         <div className={styles.heroCopy}>
           <h1>Демонтаж</h1>
-          <p>Квартиры, ванные комнаты, коммерческие помещения, стены и стяжка. Разберём, упакуем и вывезем по согласованной смете.</p>
+          <p className={styles.heroServiceLine}>Квартир и коммерческих помещений</p>
+          <p className={styles.heroDescription}>Ванные комнаты, стены, перегородки и стяжка. Разберём, упакуем и вывезем по согласованной смете.</p>
         </div>
         <div className={styles.heroIndex}>01 / 10</div>
       </section>

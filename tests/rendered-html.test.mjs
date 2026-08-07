@@ -75,6 +75,7 @@ test("renders the demolition landing page", async () => {
   assert.doesNotMatch(html, /экскаватор/i);
   assert.doesNotMatch(html, /Промышленные пылесосы/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
+  assert.match(html, /Квартир и коммерческих помещений/);
 
   const processPosition = html.indexOf("Порядок оказания работ");
   const servicesPosition = html.indexOf("Наши услуги демонтажа");
