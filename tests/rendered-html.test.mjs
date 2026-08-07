@@ -41,6 +41,12 @@ test("renders the demolition landing page", async () => {
   assert.match(html, /528/);
   assert.match(html, /объектов в Москве и Московской области/);
   assert.match(html, /href="#estimate">Расчёт</);
+  assert.match(html, /href="#cost">Стоимость</);
+  assert.match(html, /href="#projects">География и фото</);
+  assert.match(html, /href="#surveyor">Бесплатный замер</);
+  assert.match(html, /href="#about">О компании</);
+  assert.match(html, /href="#reviews">Отзывы</);
+  assert.match(html, /href="#tools">Инструменты</);
   assert.match(html, /Порядок оказания работ/);
   assert.match(html, /От чего зависит стоимость/);
   assert.match(html, /Остались вопросы\?/);
@@ -53,7 +59,11 @@ test("renders the demolition landing page", async () => {
   assert.match(html, /Резка с пылеудалением/);
   assert.match(html, /Кувалды/);
   assert.match(html, /aria-label="Вернуться наверх"/);
-  assert.match(html, /media\/work-wall\.jpg/);
+  assert.match(html, /<h1>Демонтаж<\/h1>/);
+  assert.match(html, /media\/work-floor-process\.mp4/);
+  assert.match(html, /media\/work-partition-action\.webp/);
+  assert.match(html, /media\/work-commercial-hall\.webp/);
+  assert.match(html, /media\/portfolio-commercial-wide\.webp/);
   assert.match(html, /media\/tool-sledgehammer\.jpg/);
   assert.match(html, /\+7 985 358-49-78/);
   assert.doesNotMatch(html, /<img[^>]+logo\.jpg/);

@@ -14,7 +14,7 @@ const services = [
     text: "Кирпич, пеноблок, гипсокартон и ненесущие бетонные конструкции.",
     price: "от 699 ₽ / м²",
     tag: "стены",
-    image: "./media/work-wall.jpg",
+    image: "./media/work-partition-action.webp",
     imageAlt: "Рабочий демонтирует межкомнатную перегородку",
   },
   {
@@ -32,7 +32,7 @@ const services = [
     text: "Снимаем старую стяжку, собираем бой в мешки и готовим основание.",
     price: "от 499 ₽ / м²",
     tag: "пол",
-    image: "./media/work-floor.jpg",
+    image: "./media/work-floor-demo.webp",
     imageAlt: "Разбор деревянного пола и старого основания в квартире",
   },
   {
@@ -41,7 +41,7 @@ const services = [
     text: "Натяжные, подвесные, реечные потолки и сложные каркасы.",
     price: "от 699 ₽",
     tag: "потолок",
-    image: "./media/work-ceiling.jpg",
+    image: "./media/work-ceiling-action.webp",
     imageAlt: "Рабочий снимает старую отделку у потолка",
   },
   {
@@ -77,7 +77,7 @@ const services = [
     text: "Магазины, салоны, склады и другие помещения: перегородки, потолки и полы.",
     price: "от 799 ₽ / м²",
     tag: "коммерция",
-    image: "./media/work-commercial.jpg",
+    image: "./media/work-commercial-hall.webp",
     imageAlt: "Коммерческое помещение после основного демонтажа",
   },
 ];
@@ -211,20 +211,36 @@ export default function Home() {
           <span className={styles.brandText}>Демонтаж<br /><span>под ключ</span></span>
           <span className={styles.brandLocation}><i aria-hidden="true" /><span>Москва и<br />Московская область</span></span>
         </a>
+        <div className={styles.headerMeta}>
+          <a className={styles.headerRating} href="#reviews" aria-label="Отзывы: рейтинг 5,0, 82 оценки">
+            <span aria-hidden="true">★★★★★</span>
+            <strong>5,0</strong>
+            <small>82 оценки</small>
+          </a>
+          <a className={styles.headerPhone} href={PHONE_HREF}>{PHONE_DISPLAY}</a>
+        </div>
         <nav aria-label="Основная навигация">
-          <a href="#process">Этапы</a>
+          <a href="#process">Порядок работ</a>
           <a href="#services">Услуги</a>
+          <a href="#cost">Стоимость</a>
           <a href="#estimate">Расчёт</a>
-          <a href="#projects">Объекты</a>
+          <a href="#projects">География и фото</a>
           <a href="#faq">Вопросы</a>
+          <a href="#surveyor">Бесплатный замер</a>
+          <a href="#about">О компании</a>
+          <a href="#reviews">Отзывы</a>
+          <a href="#tools">Инструменты</a>
         </nav>
       </header>
 
       <section className={styles.hero} id="top">
-        <img className={styles.heroImage} src="./media/work-wall.jpg" alt="Ручной демонтаж перегородки внутри квартиры" />
+        <video className={styles.heroVideo} autoPlay loop muted playsInline preload="metadata" poster="./media/work-floor.jpg" aria-hidden="true">
+          <source src="./media/work-floor-process.mp4" type="video/mp4" />
+        </video>
+        <img className={styles.heroPoster} src="./media/work-floor.jpg" alt="" aria-hidden="true" />
         <div className={styles.heroShade} />
         <div className={styles.heroCopy}>
-          <h1>Демонтаж<br /><em>под ключ</em></h1>
+          <h1>Демонтаж</h1>
           <p>Квартиры, ванные комнаты, коммерческие помещения, стены и стяжка. Разберём, упакуем и вывезем по согласованной смете.</p>
         </div>
         <div className={styles.heroIndex}>01 / 10</div>
@@ -407,7 +423,7 @@ export default function Home() {
               <img className={styles.mapImage} src="./moscow-region-map.png" alt="Карта Москвы и Московской области" />
               <span className={styles.mapDotField} aria-hidden="true" />
               <span className={styles.mapHotspots} aria-hidden="true" />
-              <span className={`${styles.mapPhotoPin} ${styles.mapPinNorth}`}><img src="./media/work-commercial.jpg" alt="Объект на севере Москвы" loading="lazy" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinNorth}`}><img src="./media/work-commercial-hall.webp" alt="Объект на севере Москвы" loading="lazy" /></span>
               <span className={`${styles.mapPhotoPin} ${styles.mapPinNorthWest}`}><img src="./media/work-bathroom.jpg" alt="Объект на северо-западе Москвы" loading="lazy" /></span>
               <span className={`${styles.mapPhotoPin} ${styles.mapPinWest}`}><img src="./media/work-before.jpg" alt="Объект на западе Москвы" loading="lazy" /></span>
               <span className={`${styles.mapPhotoPin} ${styles.mapPinEast}`}><img src="./media/work-prepared.jpg" alt="Объект на востоке Москвы" loading="lazy" /></span>
@@ -425,14 +441,12 @@ export default function Home() {
 
           <div className={styles.portfolioStories}>
             <article className={`${styles.portfolioPhoto} ${styles.portfolioPhotoLarge}`}>
-              <img src="./media/work-wall.jpg" alt="Ручной демонтаж межкомнатной перегородки" loading="lazy" />
-              <div><span>В работе</span><h3>Контролируемый разбор перегородки</h3></div>
+              <img src="./media/portfolio-commercial-wide.webp" alt="Крупное коммерческое помещение в процессе внутреннего демонтажа" loading="lazy" />
+              <div><span>Коммерческий объект</span><h3>Внутренний демонтаж на большой площади</h3></div>
             </article>
             <article className={styles.portfolioPhoto}>
-              <video autoPlay loop muted playsInline preload="metadata" poster="./media/work-floor.jpg" aria-label="Видео демонтажа старого пола на объекте">
-                <source src="./media/work-floor-process.mp4" type="video/mp4" />
-              </video>
-              <div><span>Видео с объекта</span><h3>Разбор старого пола</h3></div>
+              <img src="./media/portfolio-heritage-demo.webp" alt="Демонтаж отделки в кирпичном здании" loading="lazy" />
+              <div><span>Сложный объект</span><h3>Разбор отделки в старом фонде</h3></div>
             </article>
             <article className={styles.portfolioPhoto}>
               <img src="./media/work-waste.jpg" alt="Сбор строительного мусора в мешки" loading="lazy" />
@@ -452,7 +466,7 @@ export default function Home() {
         <div className={styles.faqIntro}><div className={styles.sectionLabel}>Вопросы / 06</div><h2>Остались вопросы?</h2><p>Ответили на частые вопросы. Свою ситуацию можно описать в Telegram.</p></div>
         <div className={styles.faqList}>
           {faq.map(([question, answer], index) => (
-            <details key={question}><summary><b>0{index + 1}</b><span>{question}</span><i>+</i></summary><p>{answer}</p></details>
+            <details key={question}><summary><b>0{index + 1}</b><span>{question}</span><i aria-hidden="true">+</i></summary><p>{answer}</p></details>
           ))}
         </div>
       </section>
