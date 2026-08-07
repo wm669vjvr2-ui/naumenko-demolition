@@ -144,8 +144,8 @@ export default function Home() {
     <main className={styles.site}>
       <header className={styles.header}>
         <a className={styles.brand} href="#top" aria-label="Демонтаж под ключ — наверх">
-          <span className={styles.brandText}>Демонтаж<br /><small>под ключ</small></span>
-          <span className={styles.brandLocation}>Москва и<br />Московская область</span>
+          <span className={styles.brandText}>Демонтаж<br /><span>под ключ</span></span>
+          <span className={styles.brandLocation}><i aria-hidden="true" /><span>Москва и<br />Московская область</span></span>
         </a>
         <nav aria-label="Основная навигация">
           <a href="#services">Услуги</a>
@@ -160,7 +160,6 @@ export default function Home() {
         <img className={styles.heroImage} src="./hero-interior.jpg" alt="Демонтаж перегородок внутри квартиры" />
         <div className={styles.heroShade} />
         <div className={styles.heroCopy}>
-          <div className={styles.eyebrow}><span /> Москва и Московская область</div>
           <h1>Демонтаж<br /><em>под ключ</em></h1>
           <p>Квартиры, ванные комнаты, коммерческие помещения, стены и стяжка. Разберём, упакуем и вывезем — по согласованной смете.</p>
         </div>
@@ -382,7 +381,7 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <a className={styles.brand} href="#top">
-          <span className={styles.brandText}>Демонтаж<br /><small>под ключ</small></span>
+          <span className={styles.brandText}>Демонтаж<br /><span>под ключ</span></span>
         </a>
         <p>Демонтаж квартир, коммерческих помещений и отдельных конструкций в Москве и Московской области.</p>
         <div><a href={PHONE_HREF}>{PHONE_DISPLAY}</a><a href={directTelegram} target="_blank" rel="noreferrer">Telegram ↗</a></div>
