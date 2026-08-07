@@ -12,6 +12,7 @@ const services = [
     number: "01",
     title: "Демонтаж стен и перегородок",
     text: "Кирпич, пеноблок, гипсокартон и ненесущие бетонные конструкции.",
+    price: "от 699 ₽ / м²",
     tag: "стены",
     image: "./project-apartment.jpg",
     imageAlt: "Подготовленное помещение после демонтажа перегородок",
@@ -20,6 +21,7 @@ const services = [
     number: "02",
     title: "Демонтаж сантехнической кабины",
     text: "Полный разбор кабины с сохранением стояков и общедомовых коммуникаций.",
+    price: "от 35 900 ₽",
     tag: "санузел",
     image: "./project-bathroom.jpg",
     imageAlt: "Помещение ванной комнаты перед демонтажными работами",
@@ -28,6 +30,7 @@ const services = [
     number: "03",
     title: "Демонтаж стяжки",
     text: "Снимаем старую стяжку, собираем бой в мешки и готовим основание.",
+    price: "от 499 ₽ / м²",
     tag: "пол",
     image: "./hero-interior.jpg",
     imageAlt: "Основание пола во время внутреннего демонтажа",
@@ -36,6 +39,7 @@ const services = [
     number: "04",
     title: "Демонтаж потолочных конструкций",
     text: "Натяжные, подвесные, реечные потолки и сложные каркасы.",
+    price: "от 699 ₽",
     tag: "потолок",
     image: "./project-commercial.jpg",
     imageAlt: "Потолочные конструкции коммерческого помещения",
@@ -44,6 +48,7 @@ const services = [
     number: "05",
     title: "Демонтаж квартиры под ключ",
     text: "Комплексный разбор до бетона: отделка, перегородки, сантехника и вывоз.",
+    price: "от 999 ₽ / м²",
     tag: "под ключ",
     image: "./hero-interior.jpg",
     imageAlt: "Квартира в процессе комплексного демонтажа",
@@ -52,6 +57,7 @@ const services = [
     number: "06",
     title: "Демонтаж ванной комнаты",
     text: "Плитка, сантехника, короба и старая разводка — аккуратно и поэтапно.",
+    price: "от 19 999 ₽",
     tag: "ванная",
     image: "./project-bathroom.jpg",
     imageAlt: "Ванная комната перед аккуратным демонтажом",
@@ -60,6 +66,7 @@ const services = [
     number: "07",
     title: "Демонтаж квартиры",
     text: "Частичный или полный демонтаж под новый ремонт и перепланировку.",
+    price: "от 1 199 ₽ / метр",
     tag: "квартира",
     image: "./project-apartment.jpg",
     imageAlt: "Квартира после демонтажа старой отделки",
@@ -68,6 +75,7 @@ const services = [
     number: "08",
     title: "Демонтаж коммерческих помещений",
     text: "Магазины, салоны, склады и другие помещения: перегородки, потолки и полы.",
+    price: "от 799 ₽ / м²",
     tag: "коммерция",
     image: "./project-commercial.jpg",
     imageAlt: "Коммерческое помещение для демонтажных работ",
@@ -98,6 +106,7 @@ export default function Home() {
   const [selectedService, setSelectedService] = useState(services[4].title);
   const [openedTelegram, setOpenedTelegram] = useState(false);
   const [serviceSlide, setServiceSlide] = useState(0);
+  const [revealedService, setRevealedService] = useState<string | null>(null);
   const serviceTouchStart = useRef<number | null>(null);
 
   const directTelegram = useMemo(
@@ -110,7 +119,13 @@ export default function Home() {
     document.querySelector("#estimate")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const revealServicePrice = (title: string) => {
+    setSelectedService(title);
+    setRevealedService(title);
+  };
+
   const moveServices = (direction: -1 | 1) => {
+    setRevealedService(null);
     setServiceSlide((current) => (current + direction + services.length) % services.length);
   };
 
@@ -215,6 +230,7 @@ export default function Home() {
                 <article
                   className={styles.serviceCard}
                   data-offset={offset}
+                  data-price={service.price}
                   aria-hidden={offset !== 0}
                   aria-label={`${index + 1} из ${services.length}: ${service.title}`}
                   key={service.number}
@@ -223,15 +239,27 @@ export default function Home() {
                     <div className={styles.serviceTop}><span>{service.number}</span><b>{service.tag}</b></div>
                     <div className={styles.serviceTicks} aria-hidden="true"><i /><i /><i /><i /><i /></div>
                     <h3>{service.title}</h3>
-                    <p>{service.text}</p>
-                    <button
-                      type="button"
-                      tabIndex={offset === 0 ? 0 : -1}
-                      onClick={() => chooseService(service.title)}
-                      aria-label={`Выбрать услугу: ${service.title}`}
-                    >
-                      Рассчитать услугу <span>↗</span>
-                    </button>
+                    {revealedService === service.title ? (
+                      <div className={styles.servicePrice} aria-live="polite">
+                        <span>Стоимость услуги</span>
+                        <strong>{service.price}</strong>
+                        <button type="button" onClick={() => chooseService(service.title)}>
+                          Рассчитать точную стоимость <span>↗</span>
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        <p>{service.text}</p>
+                        <button
+                          type="button"
+                          tabIndex={offset === 0 ? 0 : -1}
+                          onClick={() => revealServicePrice(service.title)}
+                          aria-label={`Показать цену услуги: ${service.title}`}
+                        >
+                          Показать цену <span>↓</span>
+                        </button>
+                      </>
+                    )}
                   </div>
                   <div className={styles.serviceVisual}>
                     <img src={service.image} alt={service.imageAlt} />
@@ -252,7 +280,7 @@ export default function Home() {
                 <button
                   type="button"
                   className={index === serviceSlide ? styles.serviceDotActive : undefined}
-                  onClick={() => setServiceSlide(index)}
+                  onClick={() => { setRevealedService(null); setServiceSlide(index); }}
                   aria-label={`Показать услугу ${index + 1}: ${service.title}`}
                   aria-current={index === serviceSlide ? "true" : undefined}
                   key={service.number}

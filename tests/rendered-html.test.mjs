@@ -33,6 +33,10 @@ test("renders the demolition landing page", async () => {
   assert.match(html, /Наши услуги/);
   assert.match(html, /Демонтаж сантехнической кабины/);
   assert.match(html, /Демонтаж коммерческих помещений/);
+  assert.match(html, /Показать цену/);
+  assert.match(html, /data-price="от 499 ₽ \/ м²"/);
+  assert.match(html, /data-price="от 35 900 ₽"/);
+  assert.match(html, /data-price="от 19 999 ₽"/);
   assert.match(html, /Объекты \/ 05/);
   assert.match(html, /528/);
   assert.match(html, /объектов в Москве и Московской области/);
