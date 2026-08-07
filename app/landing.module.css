@@ -131,12 +131,9 @@
 .serviceTicks i { width: 21px; height: 4px; display: block; background: var(--orange); transform: skewX(-22deg); }
 .serviceCard h3 { max-width: 600px; margin: 26px 0 16px; font-size: clamp(35px, 3.4vw, 53px); line-height: .98; letter-spacing: -.055em; }
 .serviceCard p { max-width: 590px; margin: 0 0 18px; color: rgba(255,255,255,.62); font-size: 16px; line-height: 1.52; }
-.serviceCard button { width: max-content; margin-top: auto; padding: 9px 0 6px; display: flex; align-items: center; gap: 13px; border: 0; border-bottom: 1px solid rgba(255,255,255,.34); background: transparent; color: white; cursor: pointer; font-size: 11px; font-weight: 850; letter-spacing: .07em; text-transform: uppercase; }
-.serviceCard button:hover { color: var(--orange); border-color: var(--orange); }
-.servicePrice { min-height: 150px; display: flex; flex-direction: column; align-items: flex-start; }
+.servicePrice { margin-top: auto; display: flex; flex-direction: column; align-items: flex-start; }
 .servicePrice > span { color: rgba(255,255,255,.5); font: 700 9px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
 .servicePrice > strong { margin-top: 12px; color: var(--orange); font-size: clamp(38px, 4vw, 61px); line-height: 1; letter-spacing: -.055em; }
-.servicePrice button { margin-top: auto; }
 .serviceVisual { position: relative; align-self: center; width: 100%; height: 320px; border: 1px solid rgba(84,84,84,.2); }
 .serviceVisual::before, .serviceVisual::after { content: ""; position: absolute; z-index: -1; top: 50%; width: 82px; height: 174px; border: 1px solid rgba(243,107,18,.5); border-radius: 50%; transform: translateY(-50%); }
 .serviceVisual::before { right: calc(100% - 9px); }
@@ -495,8 +492,7 @@
   .serviceTicks { order: 2; margin-top: 12px; }
   .serviceCard h3 { order: 3; max-width: 340px; margin: 20px 0 12px; font-size: 30px; }
   .serviceCard p { order: 4; max-width: 340px; margin-bottom: 14px; font-size: 13px; }
-  .serviceCard button { order: 5; margin-top: 5px; }
-  .servicePrice { width: 100%; min-height: 125px; align-items: center; }
+  .servicePrice { order: 5; width: 100%; margin-top: 0; align-items: center; }
   .servicePrice > strong { font-size: 38px; }
   .serviceVisual { order: 6; width: min(100%, 300px); height: 220px; margin: auto auto 0; }
   .serviceNavigation { width: 100%; margin: 28px auto 0; justify-content: flex-start; gap: 12px; }

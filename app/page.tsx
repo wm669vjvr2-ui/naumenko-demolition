@@ -155,7 +155,6 @@ export default function Home() {
   const [selectedService, setSelectedService] = useState(services[4].title);
   const [openedTelegram, setOpenedTelegram] = useState(false);
   const [serviceSlide, setServiceSlide] = useState(0);
-  const [revealedService, setRevealedService] = useState<string | null>(null);
   const serviceTouchStart = useRef<number | null>(null);
 
   const directTelegram = useMemo(
@@ -163,18 +162,7 @@ export default function Home() {
     [],
   );
 
-  const chooseService = (title: string) => {
-    setSelectedService(title);
-    document.querySelector("#estimate")?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const revealServicePrice = (title: string) => {
-    setSelectedService(title);
-    setRevealedService(title);
-  };
-
   const moveServices = (direction: -1 | 1) => {
-    setRevealedService(null);
     setServiceSlide((current) => (current + direction + services.length) % services.length);
   };
 
@@ -270,7 +258,7 @@ export default function Home() {
         <div className={styles.servicesHeading}>
           <div className={styles.sectionLabel}>Услуги / 02</div>
           <h2>Наши услуги демонтажа</h2>
-          <p>Листайте каталог и нажмите «Показать цену»: стоимость откроется в карточке.</p>
+          <p>Листайте каталог: стоимость каждой услуги сразу указана в карточке.</p>
         </div>
         <div
           className={styles.serviceCarousel}
@@ -307,27 +295,11 @@ export default function Home() {
                     <div className={styles.serviceTop}><span>{service.number}</span><b>{service.tag}</b></div>
                     <div className={styles.serviceTicks} aria-hidden="true"><i /><i /><i /><i /><i /></div>
                     <h3>{service.title}</h3>
-                    {revealedService === service.title ? (
-                      <div className={styles.servicePrice} aria-live="polite">
-                        <span>Стоимость услуги</span>
-                        <strong>{service.price}</strong>
-                        <button type="button" onClick={() => chooseService(service.title)}>
-                          Рассчитать точную стоимость <span>↗</span>
-                        </button>
-                      </div>
-                    ) : (
-                      <>
-                        <p>{service.text}</p>
-                        <button
-                          type="button"
-                          tabIndex={offset === 0 ? 0 : -1}
-                          onClick={() => revealServicePrice(service.title)}
-                          aria-label={`Показать цену услуги: ${service.title}`}
-                        >
-                          Показать цену <span>↓</span>
-                        </button>
-                      </>
-                    )}
+                    <p>{service.text}</p>
+                    <div className={styles.servicePrice}>
+                      <span>Стоимость услуги</span>
+                      <strong>{service.price}</strong>
+                    </div>
                   </div>
                   <div className={styles.serviceVisual}>
                     <img src={service.image} alt={service.imageAlt} loading="lazy" decoding="async" />
@@ -348,7 +320,7 @@ export default function Home() {
                 <button
                   type="button"
                   className={index === serviceSlide ? styles.serviceDotActive : undefined}
-                  onClick={() => { setRevealedService(null); setServiceSlide(index); }}
+                  onClick={() => setServiceSlide(index)}
                   aria-label={`Показать услугу ${index + 1}: ${service.title}`}
                   aria-current={index === serviceSlide ? "true" : undefined}
                   key={service.number}
