@@ -14,8 +14,8 @@ const services = [
     text: "Кирпич, пеноблок, гипсокартон и ненесущие бетонные конструкции.",
     price: "от 699 ₽ / м²",
     tag: "стены",
-    image: "./project-apartment.jpg",
-    imageAlt: "Подготовленное помещение после демонтажа перегородок",
+    image: "./media/work-wall.jpg",
+    imageAlt: "Рабочий демонтирует межкомнатную перегородку",
   },
   {
     number: "02",
@@ -23,8 +23,8 @@ const services = [
     text: "Полный разбор кабины с сохранением стояков и общедомовых коммуникаций.",
     price: "от 35 900 ₽",
     tag: "санузел",
-    image: "./project-bathroom.jpg",
-    imageAlt: "Помещение ванной комнаты перед демонтажными работами",
+    image: "./media/work-bathroom.jpg",
+    imageAlt: "Сантехническая кабина после снятия старой отделки",
   },
   {
     number: "03",
@@ -32,8 +32,8 @@ const services = [
     text: "Снимаем старую стяжку, собираем бой в мешки и готовим основание.",
     price: "от 499 ₽ / м²",
     tag: "пол",
-    image: "./hero-interior.jpg",
-    imageAlt: "Основание пола во время внутреннего демонтажа",
+    image: "./media/work-floor.jpg",
+    imageAlt: "Разбор деревянного пола и старого основания в квартире",
   },
   {
     number: "04",
@@ -41,8 +41,8 @@ const services = [
     text: "Натяжные, подвесные, реечные потолки и сложные каркасы.",
     price: "от 699 ₽",
     tag: "потолок",
-    image: "./project-commercial.jpg",
-    imageAlt: "Потолочные конструкции коммерческого помещения",
+    image: "./media/work-ceiling.jpg",
+    imageAlt: "Рабочий снимает старую отделку у потолка",
   },
   {
     number: "05",
@@ -50,8 +50,8 @@ const services = [
     text: "Комплексный разбор до бетона: отделка, перегородки, сантехника и вывоз.",
     price: "от 999 ₽ / м²",
     tag: "под ключ",
-    image: "./hero-interior.jpg",
-    imageAlt: "Квартира в процессе комплексного демонтажа",
+    image: "./media/work-apartment.jpg",
+    imageAlt: "Квартира в процессе комплексного внутреннего демонтажа",
   },
   {
     number: "06",
@@ -59,8 +59,8 @@ const services = [
     text: "Плитка, сантехника, короба и старая разводка. Разбираем в заданной последовательности.",
     price: "от 19 999 ₽",
     tag: "ванная",
-    image: "./project-bathroom.jpg",
-    imageAlt: "Ванная комната перед аккуратным демонтажом",
+    image: "./media/work-bathroom.jpg",
+    imageAlt: "Ванная комната после аккуратного снятия отделки",
   },
   {
     number: "07",
@@ -68,8 +68,8 @@ const services = [
     text: "Частичный или полный демонтаж под новый ремонт и перепланировку.",
     price: "от 1 199 ₽ / метр",
     tag: "квартира",
-    image: "./project-apartment.jpg",
-    imageAlt: "Квартира после демонтажа старой отделки",
+    image: "./media/work-before.jpg",
+    imageAlt: "Квартира перед началом демонтажных работ",
   },
   {
     number: "08",
@@ -77,8 +77,8 @@ const services = [
     text: "Магазины, салоны, склады и другие помещения: перегородки, потолки и полы.",
     price: "от 799 ₽ / м²",
     tag: "коммерция",
-    image: "./project-commercial.jpg",
-    imageAlt: "Коммерческое помещение для демонтажных работ",
+    image: "./media/work-commercial.jpg",
+    imageAlt: "Коммерческое помещение после основного демонтажа",
   },
 ];
 
@@ -103,10 +103,34 @@ const costFactors = [
 ];
 
 const tools = [
-  ["01", "Отбойные молотки", "Для бетона, стяжки и прочных перегородок. Подбираем мощность под конкретную конструкцию."],
-  ["02", "Резка с пылеудалением", "Аккуратный рез материалов с подключением промышленного пылесоса."],
-  ["03", "Промышленные пылесосы", "Собираем мелкую пыль во время работ и перед сдачей помещения."],
-  ["04", "Ручной инструмент", "Ломы, перфораторы, тележки и расходники для контролируемого разбора и выноса."],
+  {
+    number: "01",
+    title: "Отбойные молотки",
+    text: "Для бетона, стяжки и прочных перегородок. Подбираем мощность под конкретную конструкцию.",
+    image: "./media/tool-jackhammer.jpg",
+    imageAlt: "Отбойный молоток на реальном объекте",
+  },
+  {
+    number: "02",
+    title: "Резка с пылеудалением",
+    text: "Аккуратно режем материалы с локальным контролем пыли и защищаем соседние поверхности.",
+    image: "./media/tool-dust-cutting.jpg",
+    imageAlt: "Резка стены инструментом с подключённым пылеудалением",
+  },
+  {
+    number: "03",
+    title: "Кувалды",
+    text: "Для ручного разбора перегородок и конструкций там, где важны точность и контроль удара.",
+    image: "./media/tool-sledgehammer.jpg",
+    imageAlt: "Кувалда на слегка запылённом объекте",
+  },
+  {
+    number: "04",
+    title: "Ручной инструмент",
+    text: "Ломы, монтировки, молотки и зубила для контролируемого разбора и аккуратного выноса.",
+    image: "./media/tool-hand-tools.jpg",
+    imageAlt: "Набор ручного инструмента для внутреннего демонтажа",
+  },
 ];
 
 const reviews = [
@@ -197,7 +221,7 @@ export default function Home() {
       </header>
 
       <section className={styles.hero} id="top">
-        <img className={styles.heroImage} src="./hero-interior.jpg" alt="Демонтаж перегородок внутри квартиры" />
+        <img className={styles.heroImage} src="./media/work-wall.jpg" alt="Ручной демонтаж перегородки внутри квартиры" />
         <div className={styles.heroShade} />
         <div className={styles.heroCopy}>
           <h1>Демонтаж<br /><em>под ключ</em></h1>
@@ -290,7 +314,7 @@ export default function Home() {
                     )}
                   </div>
                   <div className={styles.serviceVisual}>
-                    <img src={service.image} alt={service.imageAlt} />
+                    <img src={service.image} alt={service.imageAlt} loading="lazy" decoding="async" />
                     <strong>{service.number}</strong>
                   </div>
                 </article>
@@ -383,12 +407,12 @@ export default function Home() {
               <img className={styles.mapImage} src="./moscow-region-map.png" alt="Карта Москвы и Московской области" />
               <span className={styles.mapDotField} aria-hidden="true" />
               <span className={styles.mapHotspots} aria-hidden="true" />
-              <span className={`${styles.mapPhotoPin} ${styles.mapPinNorth}`}><img src="./project-commercial.jpg" alt="Объект на севере Москвы" /></span>
-              <span className={`${styles.mapPhotoPin} ${styles.mapPinNorthWest}`}><img src="./project-bathroom.jpg" alt="Объект на северо-западе Москвы" /></span>
-              <span className={`${styles.mapPhotoPin} ${styles.mapPinWest}`}><img src="./project-apartment.jpg" alt="Объект на западе Москвы" /></span>
-              <span className={`${styles.mapPhotoPin} ${styles.mapPinEast}`}><img src="./project-bathroom.jpg" alt="Объект на востоке Москвы" /></span>
-              <span className={`${styles.mapPhotoPin} ${styles.mapPinSouth}`}><img src="./hero-interior.jpg" alt="Объект на юге Москвы" /></span>
-              <span className={`${styles.mapPhotoPin} ${styles.mapPinSouthWest}`}><img src="./project-commercial.jpg" alt="Объект на юго-западе Москвы" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinNorth}`}><img src="./media/work-commercial.jpg" alt="Объект на севере Москвы" loading="lazy" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinNorthWest}`}><img src="./media/work-bathroom.jpg" alt="Объект на северо-западе Москвы" loading="lazy" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinWest}`}><img src="./media/work-before.jpg" alt="Объект на западе Москвы" loading="lazy" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinEast}`}><img src="./media/work-prepared.jpg" alt="Объект на востоке Москвы" loading="lazy" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinSouth}`}><img src="./media/work-floor.jpg" alt="Объект на юге Москвы" loading="lazy" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinSouthWest}`}><img src="./media/work-waste.jpg" alt="Объект на юго-западе Москвы" loading="lazy" /></span>
               <span className={styles.mapCenterPin} aria-label="Москва"><b>Д</b></span>
             </div>
             <div className={styles.mapCounter}>
@@ -401,16 +425,18 @@ export default function Home() {
 
           <div className={styles.portfolioStories}>
             <article className={`${styles.portfolioPhoto} ${styles.portfolioPhotoLarge}`}>
-              <img src="./project-commercial.jpg" alt="Демонтаж коммерческого помещения" />
-              <div><span>Коммерческое помещение</span><h3>Перегородки, потолок и подготовка к ремонту</h3></div>
+              <img src="./media/work-wall.jpg" alt="Ручной демонтаж межкомнатной перегородки" loading="lazy" />
+              <div><span>В работе</span><h3>Контролируемый разбор перегородки</h3></div>
             </article>
             <article className={styles.portfolioPhoto}>
-              <img src="./project-apartment.jpg" alt="Демонтаж в квартире" />
-              <div><span>Квартира</span><h3>Демонтаж до бетона</h3></div>
+              <video autoPlay loop muted playsInline preload="metadata" poster="./media/work-floor.jpg" aria-label="Видео демонтажа старого пола на объекте">
+                <source src="./media/work-floor-process.mp4" type="video/mp4" />
+              </video>
+              <div><span>Видео с объекта</span><h3>Разбор старого пола</h3></div>
             </article>
             <article className={styles.portfolioPhoto}>
-              <img src="./project-bathroom.jpg" alt="Демонтаж ванной комнаты" />
-              <div><span>Ванная</span><h3>Разбор сантехкабины</h3></div>
+              <img src="./media/work-waste.jpg" alt="Сбор строительного мусора в мешки" loading="lazy" />
+              <div><span>Подготовка к вывозу</span><h3>Сортировка и упаковка мусора</h3></div>
             </article>
             <article className={styles.portfolioReviews}>
               <span>Фото и отзывы</span>
@@ -455,13 +481,13 @@ export default function Home() {
         </div>
         <div className={styles.aboutBody}>
           <div className={styles.aboutImage}>
-            <img src="./hero-interior.jpg" alt="Внутренний демонтаж помещения" />
+            <img src="./media/work-team.jpg" alt="Бригада после завершения этапа демонтажа" loading="lazy" />
           </div>
           <div className={styles.aboutCopy}>
-            <p>Более 10 лет выполняем внутренний демонтаж в квартирах и коммерческих помещениях Москвы и Московской области.</p>
+            <p>Более пяти лет выполняем внутренний демонтаж в квартирах и коммерческих помещениях Москвы и Московской области.</p>
             <p>Перед началом разбираемся в конструкции объекта, защищаем то, что нужно сохранить, фиксируем смету и только после этого выходим на работы. Берём на себя демонтаж, упаковку, спуск и вывоз строительного мусора.</p>
             <div className={styles.aboutStats}>
-              <div><strong>10+</strong><span>лет опыта</span></div>
+              <div><strong>5+</strong><span>лет опыта</span></div>
               <div><strong>528</strong><span>объектов</span></div>
               <div><strong>5,0</strong><span>рейтинг на Яндекс Услугах</span></div>
             </div>
@@ -505,15 +531,22 @@ export default function Home() {
           <p>На объект приезжает укомплектованная бригада. Подбираем инструмент под материал, объём и условия помещения.</p>
         </div>
         <div className={styles.toolsGrid}>
-          {tools.map(([number, title, text]) => (
-            <article key={number}>
-              <div className={styles.toolGraphic} aria-hidden="true"><span>{number}</span><i /><i /><i /></div>
-              <h3>{title}</h3>
-              <p>{text}</p>
+          {tools.map((tool) => (
+            <article key={tool.number}>
+              <div className={styles.toolGraphic}>
+                <img src={tool.image} alt={tool.imageAlt} loading="lazy" decoding="async" />
+                <span aria-hidden="true">{tool.number}</span>
+              </div>
+              <h3>{tool.title}</h3>
+              <p>{tool.text}</p>
             </article>
           ))}
         </div>
       </section>
+
+      <a className={styles.backToTop} href="#top" aria-label="Вернуться наверх">
+        <span aria-hidden="true">↑</span>
+      </a>
 
       <footer className={styles.footer}>
         <a className={styles.brand} href="#top">
@@ -521,7 +554,7 @@ export default function Home() {
         </a>
         <p>Демонтаж квартир, коммерческих помещений и отдельных конструкций в Москве и Московской области.</p>
         <div><a href={PHONE_HREF}>{PHONE_DISPLAY}</a><a href={directTelegram} target="_blank" rel="noreferrer">Telegram ↗</a></div>
-        <small>© 2026 · Фото прототипа: <a href="https://unsplash.com/photos/Te48TPzdcU8" target="_blank" rel="noreferrer">Milivoj Kuhar</a>, <a href="https://unsplash.com/photos/pBZBbCqyW8M" target="_blank" rel="noreferrer">Steffen Lemmerzahl</a>, <a href="https://unsplash.com/photos/3nROCRjZiFQ" target="_blank" rel="noreferrer">Razlan Hanafiah</a>.</small>
+        <small>© 2026 · Фотографии выполненных объектов — из архива бригады. Иллюстрации отдельных инструментов подготовлены для сайта.</small>
       </footer>
     </main>
   );

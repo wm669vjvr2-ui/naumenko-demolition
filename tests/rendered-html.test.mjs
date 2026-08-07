@@ -45,17 +45,23 @@ test("renders the demolition landing page", async () => {
   assert.match(html, /От чего зависит стоимость/);
   assert.match(html, /Остались вопросы\?/);
   assert.match(html, /Бесплатный выезд замерщика на объект/);
-  assert.match(html, /Более 10 лет/);
+  assert.match(html, /Более пяти лет/);
+  assert.match(html, />5\+</);
   assert.match(html, /82 оценки на Яндекс Услугах/);
   assert.match(html, /AleksandrNaumenko-1865243#reviews/);
   assert.match(html, /Отбойные молотки/);
   assert.match(html, /Резка с пылеудалением/);
+  assert.match(html, /Кувалды/);
+  assert.match(html, /aria-label="Вернуться наверх"/);
+  assert.match(html, /media\/work-wall\.jpg/);
+  assert.match(html, /media\/tool-sledgehammer\.jpg/);
   assert.match(html, /\+7 985 358-49-78/);
   assert.doesNotMatch(html, /<img[^>]+logo\.jpg/);
   assert.doesNotMatch(html, /Типы объектов \/ 03|Работаем там, где нужен аккуратный разбор/);
   assert.doesNotMatch(html, /Рассчитать в Telegram|Позвонить \+7 985/);
   assert.doesNotMatch(html, /Отдельная вкладка|Открыть расчёт/);
   assert.doesNotMatch(html, /экскаватор/i);
+  assert.doesNotMatch(html, /Промышленные пылесосы/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
 
   const processPosition = html.indexOf("Порядок оказания работ");
