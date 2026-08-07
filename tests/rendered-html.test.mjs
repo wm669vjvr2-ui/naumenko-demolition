@@ -41,12 +41,42 @@ test("renders the demolition landing page", async () => {
   assert.match(html, /528/);
   assert.match(html, /объектов в Москве и Московской области/);
   assert.match(html, /href="#estimate">Расчёт</);
+  assert.match(html, /Порядок оказания работ/);
+  assert.match(html, /От чего зависит стоимость/);
+  assert.match(html, /Остались вопросы\?/);
+  assert.match(html, /Бесплатный выезд замерщика на объект/);
+  assert.match(html, /Более 10 лет/);
+  assert.match(html, /82 оценки на Яндекс Услугах/);
+  assert.match(html, /AleksandrNaumenko-1865243#reviews/);
+  assert.match(html, /Отбойные молотки/);
+  assert.match(html, /Резка с пылеудалением/);
   assert.match(html, /\+7 985 358-49-78/);
   assert.doesNotMatch(html, /<img[^>]+logo\.jpg/);
   assert.doesNotMatch(html, /Типы объектов \/ 03|Работаем там, где нужен аккуратный разбор/);
-  assert.doesNotMatch(html, /Рассчитать в Telegram|Позвонить \+7 985|Предварительная оценка/);
+  assert.doesNotMatch(html, /Рассчитать в Telegram|Позвонить \+7 985/);
   assert.doesNotMatch(html, /Отдельная вкладка|Открыть расчёт/);
+  assert.doesNotMatch(html, /экскаватор/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
+
+  const processPosition = html.indexOf("Порядок оказания работ");
+  const servicesPosition = html.indexOf("Наши услуги демонтажа");
+  const costPosition = html.indexOf("От чего зависит стоимость");
+  const estimatePosition = html.indexOf("Расчёт / 04");
+  const projectsPosition = html.indexOf("Объекты / 05");
+  const faqPosition = html.indexOf("Остались вопросы?");
+  const surveyorPosition = html.indexOf("Бесплатный выезд замерщика на объект");
+  const aboutPosition = html.indexOf("О компании / 08");
+  const reviewsPosition = html.indexOf("Что говорят клиенты");
+  const toolsPosition = html.indexOf("Работаем своим инструментом");
+  assert.ok(processPosition < servicesPosition);
+  assert.ok(servicesPosition < costPosition);
+  assert.ok(costPosition < estimatePosition);
+  assert.ok(estimatePosition < projectsPosition);
+  assert.ok(projectsPosition < faqPosition);
+  assert.ok(faqPosition < surveyorPosition);
+  assert.ok(surveyorPosition < aboutPosition);
+  assert.ok(aboutPosition < reviewsPosition);
+  assert.ok(reviewsPosition < toolsPosition);
 });
 
 test("renders the CRM prototype", async () => {
