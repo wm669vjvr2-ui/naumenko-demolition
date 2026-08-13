@@ -55,8 +55,10 @@ test("renders the demolition landing page", async () => {
   assert.match(html, /aria-label="Написать в WhatsApp"/);
   assert.match(html, /aria-label="Открыть чат в MAX"/);
   assert.match(html, /Фотоотчёт на всех этапах работ\./);
-  assert.match(html, /Порядок оказания работ/);
-  assert.match(html, /От чего зависит стоимость/);
+  assert.match(html, /Порядок оказания услуг/);
+  assert.match(html, /От чего зависит цена работ/);
+  assert.match(html, /Расскажите о вашей объекте — рассчитаем стоимость/);
+  assert.doesNotMatch(html, /Что подготовить|5–10 фото · площадь · адрес · желаемая дата/);
   assert.match(html, /Остались вопросы\?/);
   assert.match(html, /Бесплатный выезд замерщика на объект/);
   assert.match(html, /Более пяти лет/);
@@ -83,9 +85,9 @@ test("renders the demolition landing page", async () => {
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
   assert.match(html, /Квартир и коммерческих помещений/);
 
-  const processPosition = html.indexOf("Порядок оказания работ");
+  const processPosition = html.indexOf("Порядок оказания услуг");
   const servicesPosition = html.indexOf("Наши услуги демонтажа");
-  const costPosition = html.indexOf("От чего зависит стоимость");
+  const costPosition = html.indexOf("От чего зависит цена работ");
   const estimatePosition = html.indexOf("Расчёт / 04");
   const projectsPosition = html.indexOf("Объекты / 05");
   const faqPosition = html.indexOf("Остались вопросы?");
