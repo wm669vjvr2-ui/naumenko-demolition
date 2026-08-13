@@ -151,14 +151,31 @@ function telegramUrl(text: string) {
   return `https://t.me/+${TELEGRAM_PHONE}?text=${encodeURIComponent(text)}`;
 }
 
+function whatsappUrl(text: string) {
+  return `https://wa.me/${TELEGRAM_PHONE}?text=${encodeURIComponent(text)}`;
+}
+
+function maxUrl(text: string) {
+  return `https://max.ru/:share?text=${encodeURIComponent(text)}`;
+}
+
 export default function Home() {
   const [selectedService, setSelectedService] = useState(services[4].title);
   const [openedTelegram, setOpenedTelegram] = useState(false);
+  const [callbackOpen, setCallbackOpen] = useState(false);
   const [serviceSlide, setServiceSlide] = useState(0);
   const serviceTouchStart = useRef<number | null>(null);
 
   const directTelegram = useMemo(
     () => telegramUrl("Здравствуйте! Хочу рассчитать стоимость демонтажа. Подскажите, какие фото и данные прислать?"),
+    [],
+  );
+  const directWhatsApp = useMemo(
+    () => whatsappUrl("Здравствуйте! Хочу рассчитать стоимость демонтажа."),
+    [],
+  );
+  const directMax = useMemo(
+    () => maxUrl(`Здравствуйте! Хочу рассчитать стоимость демонтажа. Контакт: ${PHONE_DISPLAY}`),
     [],
   );
 
@@ -192,6 +209,19 @@ export default function Home() {
     window.open(telegramUrl(message), "_blank", "noopener,noreferrer");
   };
 
+  const submitCallback = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const message = [
+      "Здравствуйте! Закажите мне обратный звонок.",
+      `Имя: ${form.get("callback-name")}`,
+      `Телефон: ${form.get("callback-phone")}`,
+    ].join("\n");
+
+    setCallbackOpen(false);
+    window.open(telegramUrl(message), "_blank", "noopener,noreferrer");
+  };
+
   return (
     <main className={styles.site}>
       <header className={styles.header}>
@@ -199,27 +229,48 @@ export default function Home() {
           <span className={styles.brandText}>Демонтаж<br /><span>под ключ</span></span>
           <span className={styles.brandLocation}><i aria-hidden="true" /><span>Москва и<br />Московская область</span></span>
         </a>
-        <div className={styles.headerMeta}>
+        <a className={styles.headerPhone} href={PHONE_HREF}>{PHONE_DISPLAY}</a>
+        <div className={styles.headerActions}>
           <a className={styles.headerRating} href="#reviews" aria-label="Отзывы: рейтинг 5,0, 82 оценки">
             <span aria-hidden="true">★★★★★</span>
             <strong>5,0</strong>
             <small>82 оценки</small>
           </a>
-          <a className={styles.headerPhone} href={PHONE_HREF}>{PHONE_DISPLAY}</a>
+          <div className={styles.headerSocials} aria-label="Написать в мессенджер">
+            <a href={directTelegram} target="_blank" rel="noreferrer" aria-label="Написать в Telegram" title="Telegram">TG</a>
+            <a href={directWhatsApp} target="_blank" rel="noreferrer" aria-label="Написать в WhatsApp" title="WhatsApp">WA</a>
+            <a href={directMax} target="_blank" rel="noreferrer" aria-label="Открыть чат в MAX" title="MAX">M</a>
+          </div>
+          <button className={styles.callbackButton} type="button" onClick={() => setCallbackOpen(true)}>Заказать звонок</button>
         </div>
         <nav aria-label="Основная навигация">
-          <a href="#process">Порядок работ</a>
           <a href="#services">Услуги</a>
-          <a href="#cost">Стоимость</a>
+          <a href="#cost">Цены</a>
           <a href="#estimate">Расчёт</a>
-          <a href="#projects">География и фото</a>
+          <a href="#projects">Портфолио</a>
           <a href="#faq">Вопросы</a>
           <a href="#surveyor">Бесплатный замер</a>
           <a href="#about">О компании</a>
           <a href="#reviews">Отзывы</a>
-          <a href="#tools">Инструменты</a>
         </nav>
       </header>
+
+      {callbackOpen && (
+        <div className={styles.callbackBackdrop} role="presentation" onMouseDown={() => setCallbackOpen(false)}>
+          <section className={styles.callbackModal} role="dialog" aria-modal="true" aria-labelledby="callback-title" onMouseDown={(event) => event.stopPropagation()}>
+            <button className={styles.callbackClose} type="button" onClick={() => setCallbackOpen(false)} aria-label="Закрыть окно">×</button>
+            <span>Обратный звонок</span>
+            <h2 id="callback-title">Оставьте номер — мы перезвоним</h2>
+            <p>Уточним задачу и подскажем, какие данные нужны для предварительной оценки.</p>
+            <form onSubmit={submitCallback}>
+              <label>Имя<input name="callback-name" type="text" placeholder="Алексей" required /></label>
+              <label>Номер телефона<input name="callback-phone" type="tel" placeholder="+7 999 000-00-00" required /></label>
+              <button type="submit">Оставить заявку</button>
+              <small>После нажатия откроется Telegram с готовой заявкой.</small>
+            </form>
+          </section>
+        </div>
+      )}
 
       <section className={styles.hero} id="top">
         <video className={styles.heroVideo} autoPlay loop muted playsInline preload="metadata" poster="./media/work-floor.jpg" aria-hidden="true">
@@ -239,7 +290,7 @@ export default function Home() {
         <div><strong>01</strong><span>Смета до начала работ</span></div>
         <div><strong>02</strong><span>Вывоз мусора с объекта</span></div>
         <div><strong>03</strong><span>Соблюдение режима тишины</span></div>
-        <div><strong>04</strong><span>Фотоотчёт по этапам</span></div>
+        <div><strong>04</strong><span>Фотоотчёт на всех этапах работ.</span></div>
       </section>
 
       <section className={styles.process} id="process">

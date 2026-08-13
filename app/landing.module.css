@@ -23,30 +23,50 @@
   min-height: 132px;
   padding: 0 var(--pad);
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr auto 1fr;
   grid-template-rows: 82px 50px;
   align-items: center;
   column-gap: 32px;
   color: white;
   border-bottom: 1px solid rgba(255,255,255,.22);
 }
-.brand { display: inline-flex; align-items: center; width: max-content; }
+.brand { grid-column: 1; grid-row: 1; justify-self: start; display: inline-flex; align-items: center; width: max-content; }
 .brandText { font-size: 14px; font-weight: 900; line-height: .98; letter-spacing: .04em; text-transform: uppercase; }
 .brandText > span { color: inherit; font: inherit; letter-spacing: inherit; }
 .brandLocation { margin-left: 18px; padding-left: 18px; border-left: 1px solid rgba(255,255,255,.32); display: inline-flex; align-items: center; gap: 9px; color: rgba(255,255,255,.74); font: 700 9px/1.45 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
 .brandLocation > i { width: 8px; height: 8px; flex: 0 0 auto; border-radius: 50%; background: var(--orange); box-shadow: 0 0 18px rgba(243,107,18,.9); }
-.headerMeta { justify-self: end; display: flex; align-items: center; gap: clamp(18px, 2.2vw, 34px); }
+.headerActions { grid-column: 3; grid-row: 1; justify-self: end; display: flex; align-items: center; gap: clamp(12px, 1.4vw, 22px); }
 .headerRating { min-height: 44px; display: flex; align-items: center; gap: 9px; white-space: nowrap; }
 .headerRating > span { color: var(--orange); font-size: 10px; letter-spacing: .08em; }
 .headerRating > strong { font: 800 15px/1 var(--font-mono); }
 .headerRating > small { color: rgba(255,255,255,.62); font: 700 8px/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
-.headerPhone { min-height: 44px; display: flex; align-items: center; font: 800 clamp(13px, 1.15vw, 17px)/1 var(--font-mono); letter-spacing: -.03em; white-space: nowrap; }
-.header nav { grid-column: 1 / -1; align-self: stretch; justify-self: stretch; width: 100%; display: flex; align-items: center; gap: clamp(22px, 2.5vw, 44px); overflow-x: auto; overscroll-behavior-inline: contain; border-top: 1px solid rgba(255,255,255,.12); font-size: 10px; font-weight: 750; letter-spacing: .065em; text-transform: uppercase; scrollbar-width: none; }
+.headerPhone { grid-column: 2; grid-row: 1; justify-self: center; min-height: 44px; display: flex; align-items: center; font-size: clamp(14px, 1.2vw, 18px); font-weight: 800; line-height: 1; white-space: nowrap; }
+.headerSocials { display: flex; align-items: center; gap: 7px; }
+.headerSocials a { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.48); border-radius: 50%; color: white; font-size: 9px; font-weight: 800; transition: border-color .2s, background .2s, transform .2s; }
+.headerSocials a:hover { border-color: var(--orange); background: var(--orange); transform: translateY(-2px); }
+.callbackButton { min-height: 40px; padding: 0 16px; border: 1px solid var(--orange); background: var(--orange); color: white; cursor: pointer; font-size: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; transition: background .2s, border-color .2s; }
+.callbackButton:hover { border-color: var(--orange-dark); background: var(--orange-dark); }
+.header nav { grid-column: 1 / -1; grid-row: 2; align-self: stretch; justify-self: stretch; width: 100%; display: flex; align-items: center; gap: clamp(22px, 2.5vw, 44px); overflow-x: auto; overscroll-behavior-inline: contain; border-top: 1px solid rgba(255,255,255,.12); font-size: 10px; font-weight: 750; letter-spacing: .065em; text-transform: uppercase; scrollbar-width: none; }
 .header nav::-webkit-scrollbar { display: none; }
 .header nav a { min-height: 44px; position: relative; display: flex; align-items: center; flex: 0 0 auto; white-space: nowrap; }
 .header nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -8px; height: 2px; background: var(--orange); transition: right .25s; }
 .header nav a:hover::after { right: 0; }
 .header a:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+.header button:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+
+.callbackBackdrop { position: fixed; z-index: 100; inset: 0; padding: 24px; display: grid; place-items: center; background: rgba(0,0,0,.74); backdrop-filter: blur(8px); }
+.callbackModal { width: min(560px, 100%); position: relative; padding: clamp(30px, 5vw, 58px); background: var(--paper); color: var(--ink); box-shadow: 0 28px 90px rgba(0,0,0,.42); }
+.callbackClose { width: 42px; height: 42px; position: absolute; top: 16px; right: 16px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; font-size: 28px; line-height: 1; }
+.callbackModal > span { color: var(--orange); font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.callbackModal h2 { max-width: 440px; margin: 22px 0 18px; font-size: clamp(36px, 4.5vw, 52px); font-weight: 700; line-height: 1.03; }
+.callbackModal > p { max-width: 460px; margin: 0; color: #625e58; font-size: 16px; line-height: 1.55; }
+.callbackModal form { margin-top: 30px; display: grid; gap: 16px; }
+.callbackModal label { display: grid; gap: 8px; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.callbackModal input { min-height: 54px; width: 100%; padding: 0 16px; border: 1px solid rgba(21,21,21,.28); border-radius: 0; background: white; color: var(--ink); font-size: 16px; outline: none; }
+.callbackModal input:focus { border-color: var(--orange); box-shadow: 0 0 0 2px rgba(243,107,18,.15); }
+.callbackModal form > button { min-height: 56px; border: 0; background: var(--orange); color: white; cursor: pointer; font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.callbackModal form > button:hover { background: var(--orange-dark); }
+.callbackModal form small { color: #777168; font-size: 12px; line-height: 1.45; }
 
 .hero { min-height: max(780px, 100svh); position: relative; display: grid; grid-template-columns: 1fr; align-items: end; padding: 212px var(--pad) 76px; color: white; isolation: isolate; }
 .heroVideo, .heroPoster, .heroShade { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -351,7 +371,8 @@
 
 @media (max-width: 1100px) {
   .header nav { gap: 26px; font-size: 9px; }
-  .headerMeta { gap: 18px; }
+  .headerActions { gap: 12px; }
+  .headerRating { display: none; }
   .aboutHeading { grid-template-columns: .28fr 1.72fr; }
   .aboutBody { grid-template-columns: 1fr 1fr; }
   .aboutStats { grid-template-columns: 1fr; }
@@ -376,23 +397,22 @@
 
 @media (max-width: 760px) {
   .site { --pad: 18px; }
-  .header { min-height: 118px; grid-template-rows: 70px 48px; column-gap: 10px; }
+  .header { min-height: 160px; grid-template-columns: 1fr auto; grid-template-rows: 58px 54px 48px; column-gap: 10px; }
   .brandText { font-size: 12px; }
   .brandLocation { margin-left: 11px; padding-left: 11px; font-size: 7px; }
-  .headerMeta { gap: 12px; }
-  .headerRating { gap: 6px; }
-  .headerRating > span { font-size: 8px; letter-spacing: 0; }
-  .headerRating > strong { font-size: 13px; }
-  .headerPhone { font-size: 12px; }
-  .header nav { display: flex; gap: 24px; font-size: 9px; }
-  .hero { min-height: 700px; display: block; padding-top: 182px; padding-bottom: 64px; }
-  .hero::before { inset: 118px auto 0 72%; }
+  .headerPhone { grid-column: 2; grid-row: 1; font-size: 12px; }
+  .headerActions { grid-column: 1 / -1; grid-row: 2; justify-self: stretch; justify-content: space-between; }
+  .headerSocials a { width: 32px; height: 32px; }
+  .callbackButton { min-height: 38px; padding: 0 14px; }
+  .header nav { grid-row: 3; display: flex; gap: 24px; font-size: 9px; }
+  .hero { min-height: 700px; display: block; padding-top: 208px; padding-bottom: 64px; }
+  .hero::before { inset: 160px auto 0 72%; }
   .heroVideo { object-position: 50% center; }
   .heroShade { background: linear-gradient(90deg, rgba(10,10,10,.96), rgba(10,10,10,.55)), linear-gradient(0deg, rgba(10,10,10,.86), transparent 58%); }
   .hero h1 { font-size: clamp(54px, 16vw, 92px); line-height: .86; letter-spacing: -.045em; }
   .heroServiceLine { max-width: 600px; margin-top: 20px; font-size: clamp(22px, 6.7vw, 35px); line-height: 1.02; letter-spacing: -.025em; }
   .heroDescription { margin-top: 28px; font-size: 15px; }
-  .heroIndex { right: 18px; top: 139px; }
+  .heroIndex { right: 18px; top: 178px; }
   .proof { grid-template-columns: 1fr 1fr; }
   .proof div { min-height: 104px; padding: 18px; }
   .estimate, .projectsHeader, .process, .faq, .surveyor, .tools { grid-template-columns: 1fr; }
@@ -464,9 +484,7 @@
 
 @media (max-width: 510px) {
   .brandLocation { display: none; }
-  .headerMeta { gap: 9px; }
-  .headerRating > span { letter-spacing: -.06em; }
-  .headerPhone { font-size: 10px; letter-spacing: -.055em; }
+  .headerPhone { font-size: 11px; }
   .projectsHeader h2 { font-size: 45px; }
   .mapCircle { width: 100%; }
   .mapPhotoPin { width: 54px; padding: 4px; }
@@ -523,4 +541,18 @@
   .hero { background: #161616; }
   .heroVideo { display: none; }
   .heroPoster { display: block; }
+}
+
+/* Типографика по референсу demontage-home.ru: Arial, спокойный кегль и обычный трекинг. */
+.site, .site * { font-family: Arial, Helvetica, sans-serif !important; }
+.site h1, .site h2, .site h3, .site p { letter-spacing: normal !important; }
+.hero h1 { font-size: clamp(58px, 6vw, 72px); font-weight: 700; line-height: 1; }
+.site h2 { font-size: clamp(40px, 4vw, 55px); font-weight: 700; line-height: 1.08; }
+.heroServiceLine { font-size: clamp(24px, 2.5vw, 38px); line-height: 1.08; }
+
+@media (max-width: 760px) {
+  .hero h1 { font-size: clamp(52px, 15vw, 68px); }
+  .site h2 { font-size: clamp(36px, 10vw, 46px); }
+  .callbackBackdrop { padding: 14px; }
+  .callbackModal { padding: 42px 24px 28px; }
 }
