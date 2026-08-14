@@ -92,17 +92,26 @@
 .about { padding: 145px var(--pad); background: var(--paper); }
 .aboutHeading { display: grid; grid-template-columns: .34fr 1.66fr; align-items: start; gap: 5vw; }
 .aboutHeading h2 { max-width: 1050px; margin: 0; font-size: clamp(58px, 7.3vw, 118px); line-height: .84; letter-spacing: -.075em; }
-.aboutBody { margin-top: 76px; display: grid; grid-template-columns: 1.05fr .95fr; align-items: stretch; gap: clamp(36px, 6vw, 96px); }
-.aboutImage { min-height: 540px; overflow: hidden; background: var(--ink); }
-.aboutImage img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.28) saturate(.8) contrast(1.05); }
+.aboutOverview { margin-top: 76px; display: grid; grid-template-columns: minmax(0, .92fr) minmax(430px, 1.08fr); align-items: center; gap: clamp(36px, 6vw, 96px); }
 .aboutCopy { display: flex; flex-direction: column; justify-content: center; }
 .aboutCopy > p { max-width: 690px; margin: 0 0 26px; color: #5e5a54; font-size: clamp(16px, 1.4vw, 21px); line-height: 1.65; }
 .aboutCopy > p:first-child { color: var(--ink); font-size: clamp(24px, 2.5vw, 39px); font-weight: 760; line-height: 1.18; letter-spacing: -.04em; }
-.aboutStats { margin-top: 42px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
+.aboutStats { margin-top: 42px; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--ink); }
 .aboutStats div { min-height: 135px; padding: 22px 14px 0 0; display: flex; flex-direction: column; gap: 8px; border-right: 1px solid var(--line); }
 .aboutStats div + div { padding-left: 18px; }
-.aboutStats strong { color: var(--orange); font-size: clamp(38px, 4vw, 64px); line-height: 1; letter-spacing: -.06em; }
+.aboutStats strong { color: var(--orange); font-size: clamp(28px, 3vw, 48px); line-height: 1; letter-spacing: -.06em; }
 .aboutStats span { max-width: 150px; color: #68625c; font: 700 9px/1.4 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.companyMap { min-width: 0; display: grid; justify-items: center; }
+.companyMap .mapCircle { max-width: 600px; }
+.companyMap .mapCounter span { max-width: 520px; }
+.trustHeading { margin-top: 110px; display: grid; grid-template-columns: .34fr 1.66fr; gap: 5vw; align-items: start; border-top: 1px solid var(--ink); padding-top: 38px; }
+.trustHeading > span { color: var(--orange); font-size: 11px; font-weight: 800; text-transform: uppercase; }
+.trustHeading h3 { max-width: 900px; margin: 0; font-size: clamp(44px, 5.5vw, 82px); line-height: 1; }
+.trustGrid { margin-top: 58px; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--line); }
+.trustGrid article { min-height: 290px; padding: 30px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.trustGrid article > span { color: var(--orange); font-size: 11px; font-weight: 800; }
+.trustGrid h4 { max-width: 520px; margin: 42px 0 20px; font-size: clamp(25px, 2.4vw, 38px); line-height: 1.05; }
+.trustGrid p { max-width: 630px; margin: auto 0 0; color: #69635c; font-size: 14px; line-height: 1.65; }
 .services { padding: 145px var(--pad) 130px; overflow: hidden; background: #111; color: white; }
 .servicesHeading { max-width: 1100px; margin: 0 auto; text-align: center; }
 .servicesHeading h2 { margin: 24px 0 0; font-size: clamp(54px, 6.8vw, 108px); line-height: .9; letter-spacing: -.07em; }
@@ -204,6 +213,8 @@
 .form legend { width: 100%; margin-bottom: 13px; font: 700 9px var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
 .form fieldset label { display: flex; align-items: center; gap: 7px; font-size: 13px; }
 .form fieldset input { width: auto; accent-color: var(--orange); }
+.messengerChoice label { min-height: 38px; padding: 0 13px; border: 1px solid var(--line); background: white; font-weight: 700; }
+.messengerChoice label:has(input:checked) { border-color: var(--orange); background: rgba(243,107,18,.08); color: var(--orange-dark); }
 .formButton { width: 100%; min-height: 68px; margin-top: 28px; padding: 0 22px; display: flex; align-items: center; justify-content: space-between; border: 0; background: var(--ink); color: white; cursor: pointer; font-size: 12px; font-weight: 850; text-transform: uppercase; }
 .formButton span { color: var(--orange); font-size: 20px; }
 .form small { display: block; margin-top: 12px; color: #77726b; font-size: 10px; line-height: 1.4; }
@@ -374,7 +385,7 @@
   .headerActions { gap: 12px; }
   .headerRating { display: none; }
   .aboutHeading { grid-template-columns: .28fr 1.72fr; }
-  .aboutBody { grid-template-columns: 1fr 1fr; }
+  .aboutOverview { grid-template-columns: minmax(0, 1fr) minmax(390px, 1fr); gap: 44px; }
   .aboutStats { grid-template-columns: 1fr; }
   .aboutStats div { min-height: 90px; padding: 18px 0; border-right: 0; border-bottom: 1px solid var(--line); }
   .aboutStats div + div { padding-left: 0; }
@@ -419,11 +430,14 @@
   .about, .services, .cost, .estimate, .projects, .process, .faq, .surveyor, .reviews, .tools { padding-top: 90px; padding-bottom: 90px; }
   .aboutHeading, .costHeading { grid-template-columns: 1fr; gap: 34px; }
   .aboutHeading h2 { font-size: 56px; }
-  .aboutBody { margin-top: 50px; grid-template-columns: 1fr; }
-  .aboutImage { min-height: 390px; }
-  .aboutStats { grid-template-columns: repeat(3, 1fr); }
+  .aboutOverview { margin-top: 50px; grid-template-columns: 1fr; }
+  .companyMap { margin-top: 28px; }
+  .aboutStats { grid-template-columns: repeat(2, 1fr); }
   .aboutStats div { min-height: 115px; padding: 18px 10px 0 0; border-right: 1px solid var(--line); border-bottom: 0; }
   .aboutStats div + div { padding-left: 12px; }
+  .trustHeading { margin-top: 78px; grid-template-columns: 1fr; gap: 22px; }
+  .trustGrid { margin-top: 38px; grid-template-columns: 1fr; }
+  .trustGrid article { min-height: 250px; }
   .servicesHeading h2 { font-size: 52px; }
   .servicesHeading > p { font-size: 14px; }
   .serviceStage { height: 460px; margin-top: 48px; }
@@ -522,10 +536,11 @@
   .serviceDots { display: none; }
   .costGrid { grid-template-columns: 1fr; }
   .costGrid article { min-height: 230px; }
-  .aboutImage { min-height: 320px; }
   .aboutStats { grid-template-columns: 1fr; }
   .aboutStats div { min-height: 85px; padding: 16px 0; border-right: 0; border-bottom: 1px solid var(--line); }
   .aboutStats div + div { padding-left: 0; }
+  .trustHeading h3 { font-size: 40px; }
+  .trustGrid article { min-height: 230px; padding: 24px; }
   .reviewsHeading h2 { font-size: 56px; }
   .reviewRating strong { font-size: 54px; }
   .phoneReview { min-height: 520px; border-radius: 34px; }

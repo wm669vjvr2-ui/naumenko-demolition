@@ -18,12 +18,19 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ru_RU",
     title: "Демонтаж под ключ в Москве и МО",
-    description: "Квартиры, коммерческие помещения и отдельные конструкции. Расчёт по фото в Telegram.",
+    description: "Квартиры, коммерческие помещения и отдельные конструкции. Расчёт по фото в Telegram, WhatsApp или MAX.",
+    images: [{
+      url: "https://wm669vjvr2-ui.github.io/naumenko-demolition/og.png",
+      width: 1200,
+      height: 630,
+      alt: "Демонтаж в Москве и Московской области",
+    }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Демонтаж под ключ в Москве и МО",
-    description: "Расчёт стоимости демонтажа по фото.",
+    description: "Расчёт стоимости демонтажа по фото в удобном мессенджере.",
+    images: ["https://wm669vjvr2-ui.github.io/naumenko-demolition/og.png"],
   },
 };
 

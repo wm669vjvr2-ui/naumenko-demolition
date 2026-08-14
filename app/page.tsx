@@ -103,31 +103,45 @@ const costFactors = [
 const tools = [
   {
     number: "01",
-    title: "Отбойные молотки",
-    text: "Для бетона, стяжки и прочных перегородок. Подбираем мощность под конкретную конструкцию.",
-    image: "./media/tool-jackhammer.jpg",
-    imageAlt: "Отбойный молоток на реальном объекте",
+    title: "Большие и малые болгарки",
+    text: "Используем для резки металла, арматуры, труб и других материалов. Размер инструмента подбираем под конкретную задачу и условия на объекте.",
+    image: "./media/tool-dust-cutting.jpg",
+    imageAlt: "Профессиональная болгарка на объекте",
   },
   {
     number: "02",
-    title: "Резка с пылеудалением",
-    text: "Аккуратно режем материалы с локальным контролем пыли и защищаем соседние поверхности.",
-    image: "./media/tool-dust-cutting.jpg",
-    imageAlt: "Резка стены инструментом с подключённым пылеудалением",
+    title: "Перфораторы",
+    text: "Для сверления, штробления и демонтажа отдельных участков стен, перегородок, плитки и других конструкций.",
+    image: "./media/tool-jackhammer.jpg",
+    imageAlt: "Перфоратор на объекте",
   },
   {
     number: "03",
-    title: "Кувалды",
-    text: "Для ручного разбора перегородок и конструкций там, где важны точность и контроль удара.",
-    image: "./media/tool-sledgehammer.jpg",
-    imageAlt: "Кувалда на слегка запылённом объекте",
+    title: "Отбойные молотки",
+    text: "Используем для тяжёлого демонтажа бетона, стяжки, кирпича и других прочных конструкций.",
+    image: "./media/work-floor.jpg",
+    imageAlt: "Отбойный молоток во время демонтажа пола",
   },
   {
     number: "04",
+    title: "Сабельные пилы",
+    text: "Для быстрого и контролируемого распила деревянных конструкций, дверей, перегородок, труб и других элементов.",
+    image: "./media/work-partition-action.webp",
+    imageAlt: "Распил конструкции на объекте",
+  },
+  {
+    number: "05",
     title: "Ручной инструмент",
-    text: "Ломы, монтировки, молотки и зубила для контролируемого разбора и аккуратного выноса.",
+    text: "Лом, монтажки, кувалды и другой ручной инструмент используем там, где важны точность, контроль и аккуратный демонтаж.",
     image: "./media/tool-hand-tools.jpg",
     imageAlt: "Набор ручного инструмента для внутреннего демонтажа",
+  },
+  {
+    number: "06",
+    title: "Кувалды",
+    text: "Для демонтажа кирпичных, бетонных и других прочных конструкций, когда требуется высокая ударная нагрузка.",
+    image: "./media/tool-sledgehammer.jpg",
+    imageAlt: "Кувалда на слегка запылённом объекте",
   },
 ];
 
@@ -138,11 +152,19 @@ const reviews = [
 ];
 
 const faq = [
-  ["Можно оценить объект только по фотографиям?", "Да. Для предварительной оценки пришлите 5–10 фото, площадь и короткое описание. Для сложной конструкции согласуем бесплатный осмотр."],
-  ["Вывоз строительного мусора входит в работу?", "Вывоз можем включить в общую смету или вынести отдельной строкой. Обе части стоимости согласуем до начала работ."],
-  ["Работаете с квартирами в жилых домах?", "Да. Учитываем разрешённое время шумных работ, защищаем лифт и общие зоны, мусор выносим в мешках."],
-  ["Можно демонтировать только одну стену или ванную?", "Можно. Берём как комплексные объекты под ключ, так и локальные задачи из каталога выше."],
-  ["Какие документы выдаёте?", "Состав документов согласуем перед работой. Подготовим смету, договор, акт и документы по вывозу, если их требует объект."],
+  ["Как рассчитывается стоимость демонтажа?", "Стоимость зависит от площади, объёма и сложности работ, материалов, этажа, условий выноса и необходимости вывоза строительного мусора. Предварительно можем оценить объект по фотографиям, а точную стоимость согласовываем после оценки."],
+  ["Может ли стоимость измениться после начала демонтажа?", "Нет, если объём работ остаётся согласованным. Перед началом демонтажа мы фиксируем перечень работ и их стоимость в смете. Если в процессе появляются дополнительные работы, которых не было в первоначальной заявке, мы заранее согласовываем их с вами."],
+  ["Можно ли рассчитать стоимость по фотографиям?", "Да. Отправьте фото или видео, площадь, адрес и желаемую дату начала работ. По этим данным мы сможем предварительно оценить объём работ и сориентировать вас по стоимости."],
+  ["Что входит в демонтаж под ключ?", "Мы берём на себя весь процесс: демонтаж согласованных конструкций и отделки, сбор и вынос строительного мусора, погрузку и его вывоз. Состав работ заранее фиксируется в смете."],
+  ["Работаете ли вы по договору?", "Да. Перед началом работ согласовываем перечень работ, стоимость и сроки. Основные условия фиксируются в договоре и смете."],
+  ["Входит ли вывоз строительного мусора в стоимость?", "Если вы заказываете демонтаж под ключ, мы можем взять на себя сбор, вынос, погрузку и вывоз строительного мусора. Условия и стоимость заранее учитываются в смете."],
+];
+
+const trustReasons = [
+  ["Всё в одних руках", "Один подрядчик берёт на себя весь процесс — от оценки объекта до его полного освобождения. Вам не нужно отдельно искать демонтажников, грузчиков и транспорт."],
+  ["Знаем, как работать с разными объектами", "За годы работы сталкивались с разными конструкциями, материалами и условиями на объектах. Поэтому заранее учитываем особенности помещения и подбираем оптимальный способ демонтажа."],
+  ["Понятная смета до начала работ", "Перед стартом согласовываем перечень работ, стоимость и сроки. Вы заранее понимаете, что входит в работу и за что платите."],
+  ["Бережное отношение к объекту", "«Ломать — не строить» — не про нас. Демонтаж — это ответственный этап подготовки объекта к дальнейшим работам. Мы берём на себя весь процесс и закрываем головную боль клиента, чтобы после нас можно было спокойно переходить к следующему этапу."],
 ];
 
 function telegramUrl(text: string) {
@@ -159,7 +181,8 @@ function maxUrl(text: string) {
 
 export default function Home() {
   const [selectedService, setSelectedService] = useState(services[4].title);
-  const [openedTelegram, setOpenedTelegram] = useState(false);
+  const [estimateMessenger, setEstimateMessenger] = useState<"telegram" | "whatsapp" | "max">("telegram");
+  const [openedMessenger, setOpenedMessenger] = useState("");
   const [callbackOpen, setCallbackOpen] = useState(false);
   const [serviceSlide, setServiceSlide] = useState(0);
   const serviceTouchStart = useRef<number | null>(null);
@@ -203,8 +226,15 @@ export default function Home() {
       form.get("comment") ? `Комментарий: ${form.get("comment")}` : "",
     ].filter(Boolean).join("\n");
 
-    setOpenedTelegram(true);
-    window.open(telegramUrl(message), "_blank", "noopener,noreferrer");
+    const destination = estimateMessenger === "whatsapp"
+      ? whatsappUrl(message)
+      : estimateMessenger === "max"
+        ? maxUrl(`${message}\nКонтакт: ${PHONE_DISPLAY}`)
+        : telegramUrl(message);
+    const messengerName = estimateMessenger === "whatsapp" ? "WhatsApp" : estimateMessenger === "max" ? "MAX" : "Telegram";
+
+    setOpenedMessenger(messengerName);
+    window.open(destination, "_blank", "noopener,noreferrer");
   };
 
   const submitCallback = (event: FormEvent<HTMLFormElement>) => {
@@ -245,11 +275,11 @@ export default function Home() {
           <a href="#services">Услуги</a>
           <a href="#cost">Цены</a>
           <a href="#estimate">Расчёт</a>
-          <a href="#projects">Портфолио</a>
           <a href="#faq">Вопросы</a>
-          <a href="#surveyor">Бесплатный замер</a>
+          <a href="#surveyor">Бесплатная оценка</a>
           <a href="#about">О компании</a>
           <a href="#reviews">Отзывы</a>
+          <a href="#tools">Оборудование</a>
         </nav>
       </header>
 
@@ -281,7 +311,7 @@ export default function Home() {
           <p className={styles.heroServiceLine}>Квартир и коммерческих помещений</p>
           <p className={styles.heroDescription}>Ванные комнаты, стены, перегородки и стяжка. Разберём, упакуем и вывезем по согласованной смете.</p>
         </div>
-        <div className={styles.heroIndex}>01 / 10</div>
+        <div className={styles.heroIndex}>01 / 09</div>
       </section>
 
       <section className={styles.proof} aria-label="Преимущества">
@@ -425,67 +455,20 @@ export default function Home() {
             <label><input type="radio" name="waste" value="Нет" /> Нет</label>
             <label><input type="radio" name="waste" value="Нужно обсудить" /> Обсудить</label>
           </fieldset>
+          <fieldset className={styles.messengerChoice}>
+            <legend>Куда отправить заявку?</legend>
+            <label><input type="radio" name="messenger" value="telegram" checked={estimateMessenger === "telegram"} onChange={() => setEstimateMessenger("telegram")} /> Telegram</label>
+            <label><input type="radio" name="messenger" value="whatsapp" checked={estimateMessenger === "whatsapp"} onChange={() => setEstimateMessenger("whatsapp")} /> WhatsApp</label>
+            <label><input type="radio" name="messenger" value="max" checked={estimateMessenger === "max"} onChange={() => setEstimateMessenger("max")} /> MAX</label>
+          </fieldset>
           <label>Комментарий<textarea name="comment" placeholder="Что нужно сохранить, этаж, есть ли грузовой лифт…" /></label>
-          <button className={styles.formButton} type="submit">Открыть заявку в Telegram <span>↗</span></button>
-          <small>{openedTelegram ? "Telegram открыт. Текст заявки уже подготовлен." : "Сообщение не отправится без вашего подтверждения в Telegram."}</small>
+          <button className={styles.formButton} type="submit">Открыть заявку в {estimateMessenger === "whatsapp" ? "WhatsApp" : estimateMessenger === "max" ? "MAX" : "Telegram"} <span>↗</span></button>
+          <small>{openedMessenger ? `${openedMessenger} открыт. Текст заявки уже подготовлен.` : "Выберите удобный мессенджер. Сообщение отправится только после вашего подтверждения."}</small>
         </form>
       </section>
 
-      <section className={styles.projects} id="projects">
-        <div className={styles.projectsHeader}>
-          <div>
-            <div className={styles.sectionLabel}>Объекты / 05</div>
-            <h2>География работ и фотоотчёты</h2>
-          </div>
-          <p>Слева отмечены выполненные объекты по Москве и области. Справа находятся фотографии работ. Отзывы и похожие примеры отправим по запросу.</p>
-        </div>
-        <div className={styles.portfolioGrid}>
-          <div className={styles.portfolioMap}>
-            <div className={styles.mapCircle} aria-label="Карта выполненных объектов в Москве и Московской области">
-              <img className={styles.mapImage} src="./moscow-region-map.png" alt="Карта Москвы и Московской области" />
-              <span className={styles.mapDotField} aria-hidden="true" />
-              <span className={styles.mapHotspots} aria-hidden="true" />
-              <span className={`${styles.mapPhotoPin} ${styles.mapPinNorth}`}><img src="./media/work-commercial-hall.webp" alt="Объект на севере Москвы" loading="lazy" /></span>
-              <span className={`${styles.mapPhotoPin} ${styles.mapPinNorthWest}`}><img src="./media/work-bathroom.jpg" alt="Объект на северо-западе Москвы" loading="lazy" /></span>
-              <span className={`${styles.mapPhotoPin} ${styles.mapPinWest}`}><img src="./media/work-before.jpg" alt="Объект на западе Москвы" loading="lazy" /></span>
-              <span className={`${styles.mapPhotoPin} ${styles.mapPinEast}`}><img src="./media/work-prepared.jpg" alt="Объект на востоке Москвы" loading="lazy" /></span>
-              <span className={`${styles.mapPhotoPin} ${styles.mapPinSouth}`}><img src="./media/work-floor.jpg" alt="Объект на юге Москвы" loading="lazy" /></span>
-              <span className={`${styles.mapPhotoPin} ${styles.mapPinSouthWest}`}><img src="./media/work-waste.jpg" alt="Объект на юго-западе Москвы" loading="lazy" /></span>
-              <span className={styles.mapCenterPin} aria-label="Москва"><b>Д</b></span>
-            </div>
-            <div className={styles.mapCounter}>
-              <strong>528</strong>
-              <span>объектов в Москве и Московской области</span>
-              <small>уже сделали</small>
-            </div>
-            <a className={styles.mapCredit} href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors</a>
-          </div>
-
-          <div className={styles.portfolioStories}>
-            <article className={`${styles.portfolioPhoto} ${styles.portfolioPhotoLarge}`}>
-              <img src="./media/portfolio-commercial-wide.webp" alt="Крупное коммерческое помещение в процессе внутреннего демонтажа" loading="lazy" />
-              <div><span>Коммерческий объект</span><h3>Внутренний демонтаж на большой площади</h3></div>
-            </article>
-            <article className={styles.portfolioPhoto}>
-              <img src="./media/portfolio-heritage-demo.webp" alt="Демонтаж отделки в кирпичном здании" loading="lazy" />
-              <div><span>Сложный объект</span><h3>Разбор отделки в старом фонде</h3></div>
-            </article>
-            <article className={styles.portfolioPhoto}>
-              <img src="./media/work-waste.jpg" alt="Сбор строительного мусора в мешки" loading="lazy" />
-              <div><span>Подготовка к вывозу</span><h3>Сортировка и упаковка мусора</h3></div>
-            </article>
-            <article className={styles.portfolioReviews}>
-              <span>Фото и отзывы</span>
-              <h3>Покажем похожие объекты</h3>
-              <p>Пришлём в Telegram фото до и после, состав работ и отзывы по вашему типу демонтажа.</p>
-              <a href={telegramUrl("Здравствуйте! Пришлите, пожалуйста, фото выполненных объектов и отзывы по похожему демонтажу.")} target="_blank" rel="noreferrer">Запросить подборку ↗</a>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <section className={styles.faq} id="faq">
-        <div className={styles.faqIntro}><div className={styles.sectionLabel}>Вопросы / 06</div><h2>Остались вопросы?</h2><p>Ответили на частые вопросы. Свою ситуацию можно описать в Telegram.</p></div>
+        <div className={styles.faqIntro}><div className={styles.sectionLabel}>Вопросы / 05</div><h2>Остались вопросы?</h2><p>Собрали ответы на вопросы, которые чаще всего возникают перед демонтажом.</p></div>
         <div className={styles.faqList}>
           {faq.map(([question, answer], index) => (
             <details key={question}><summary><b>0{index + 1}</b><span>{question}</span><i aria-hidden="true">+</i></summary><p>{answer}</p></details>
@@ -500,11 +483,11 @@ export default function Home() {
           <i>Москва + область</i>
         </div>
         <div className={styles.surveyorCopy}>
-          <div className={styles.sectionLabel}>Замерщик / 07</div>
-          <h2>Бесплатный выезд замерщика на объект.</h2>
-          <p>Специалист осмотрит помещение, уточнит объём демонтажа и вывоза, сделает замеры и подготовит понятную смету. Время выезда согласуем заранее.</p>
+          <div className={styles.sectionLabel}>Оценка / 06</div>
+          <h2>Бесплатная оценка объекта</h2>
+          <p>Специалист приедет на объект, оценит объём и сложность демонтажных работ, условия доступа и вывоза строительного мусора. После осмотра подготовим понятную смету и согласуем стоимость и сроки работ.</p>
           <div className={styles.surveyorActions}>
-            <a className={styles.primaryButton} href={telegramUrl("Здравствуйте! Хочу пригласить замерщика на объект. Подскажите ближайшее свободное время?")} target="_blank" rel="noreferrer">Пригласить замерщика <span>↗</span></a>
+            <a className={styles.primaryButton} href={telegramUrl("Здравствуйте! Хочу пригласить специалиста для бесплатной оценки объекта.")} target="_blank" rel="noreferrer">Пригласить специалиста <span>↗</span></a>
             <a href={PHONE_HREF}>{PHONE_DISPLAY}</a>
           </div>
         </div>
@@ -512,29 +495,56 @@ export default function Home() {
 
       <section className={styles.about} id="about">
         <div className={styles.aboutHeading}>
-          <div className={styles.sectionLabel}>О компании / 08</div>
-          <h2>Точно разбираем помещения.</h2>
+          <div className={styles.sectionLabel}>О компании / 07</div>
+          <h2>О компании</h2>
         </div>
-        <div className={styles.aboutBody}>
-          <div className={styles.aboutImage}>
-            <img src="./media/work-team.jpg" alt="Бригада после завершения этапа демонтажа" loading="lazy" />
-          </div>
+        <div className={styles.aboutOverview}>
           <div className={styles.aboutCopy}>
-            <p>Более пяти лет выполняем внутренний демонтаж в квартирах и коммерческих помещениях Москвы и Московской области.</p>
-            <p>Перед началом разбираемся в конструкции объекта, защищаем то, что нужно сохранить, фиксируем смету и только после этого выходим на работы. Берём на себя демонтаж, упаковку, спуск и вывоз строительного мусора.</p>
+            <p><strong>Демонтаж под ключ — берём на себя весь процесс от оценки объекта до полного освобождения помещения.</strong></p>
+            <p>Более 10 лет выполняем демонтажные работы в Москве и Московской области. Специализируемся на квартирах и коммерческих помещениях — от отдельных видов работ до полного демонтажа перед ремонтом или реконструкцией.</p>
+            <p>Оцениваем объект, рассчитываем объём работ, согласовываем смету и сроки, после чего выполняем демонтаж и организуем вынос, погрузку и вывоз строительного мусора. Вы получаете готовое к следующему этапу помещение без необходимости искать нескольких подрядчиков.</p>
             <div className={styles.aboutStats}>
-              <div><strong>5+</strong><span>лет опыта</span></div>
-              <div><strong>528</strong><span>объектов</span></div>
-              <div><strong>5,0</strong><span>рейтинг на Яндекс Услугах</span></div>
+              <div><strong>10+</strong><span>лет опыта</span></div>
+              <div><strong>500+</strong><span>выполненных объектов</span></div>
+              <div><strong>Под ключ</strong><span>весь процесс</span></div>
+              <div><strong>Москва + МО</strong><span>география работ</span></div>
             </div>
           </div>
+          <div className={styles.companyMap}>
+            <div className={styles.mapCircle} aria-label="Карта выполненных объектов в Москве и Московской области">
+              <img className={styles.mapImage} src="./moscow-region-map.png" alt="Карта Москвы и Московской области" />
+              <span className={styles.mapDotField} aria-hidden="true" />
+              <span className={styles.mapHotspots} aria-hidden="true" />
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinNorth}`}><img src="./media/work-commercial-hall.webp" alt="Объект на севере Москвы" loading="lazy" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinNorthWest}`}><img src="./media/work-bathroom.jpg" alt="Объект на северо-западе Москвы" loading="lazy" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinWest}`}><img src="./media/work-before.jpg" alt="Объект на западе Москвы" loading="lazy" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinEast}`}><img src="./media/work-prepared.jpg" alt="Объект на востоке Москвы" loading="lazy" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinSouth}`}><img src="./media/work-floor.jpg" alt="Объект на юге Москвы" loading="lazy" /></span>
+              <span className={`${styles.mapPhotoPin} ${styles.mapPinSouthWest}`}><img src="./media/work-waste.jpg" alt="Объект на юго-западе Москвы" loading="lazy" /></span>
+              <span className={styles.mapCenterPin} aria-label="Москва"><b>Д</b></span>
+            </div>
+            <div className={styles.mapCounter}>
+              <strong>500+</strong>
+              <span>выполненных объектов в Москве и Московской области</span>
+            </div>
+            <a className={styles.mapCredit} href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap contributors</a>
+          </div>
+        </div>
+        <div className={styles.trustHeading}>
+          <span>Наш подход</span>
+          <h3>Почему нам доверяют</h3>
+        </div>
+        <div className={styles.trustGrid}>
+          {trustReasons.map(([title, text], index) => (
+            <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h4>{title}</h4><p>{text}</p></article>
+          ))}
         </div>
       </section>
 
       <section className={styles.reviews} id="reviews">
         <div className={styles.reviewsHeading}>
           <div>
-            <div className={styles.sectionLabel}>Отзывы / 09</div>
+            <div className={styles.sectionLabel}>Отзывы / 08</div>
             <h2>Что говорят клиенты</h2>
           </div>
           <div className={styles.reviewRating}>
@@ -562,9 +572,9 @@ export default function Home() {
 
       <section className={styles.tools} id="tools">
         <div className={styles.toolsHeading}>
-          <div className={styles.sectionLabel}>Инструменты / 10</div>
-          <h2>Работаем своим инструментом.</h2>
-          <p>На объект приезжает укомплектованная бригада. Подбираем инструмент под материал, объём и условия помещения.</p>
+          <div className={styles.sectionLabel}>Оборудование / 09</div>
+          <h2>Оборудование и инструмент</h2>
+          <p>Используем профессиональный инструмент для разных видов демонтажных работ — от аккуратного разбора отделки до демонтажа бетонных и кирпичных конструкций.</p>
         </div>
         <div className={styles.toolsGrid}>
           {tools.map((tool) => (
