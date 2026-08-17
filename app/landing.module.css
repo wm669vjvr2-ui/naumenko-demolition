@@ -67,6 +67,10 @@
 .callbackModal form > button { min-height: 56px; border: 0; background: var(--orange); color: white; cursor: pointer; font-size: 12px; font-weight: 800; text-transform: uppercase; }
 .callbackModal form > button:hover { background: var(--orange-dark); }
 .callbackModal form small { color: #777168; font-size: 12px; line-height: 1.45; }
+.callbackModal form small a, .form small a { color: #a83f00; text-decoration: underline; text-underline-offset: 2px; }
+.callbackModal .consentRow, .form .consentRow { margin-top: 8px; display: flex; align-items: flex-start; gap: 10px; font-size: 12px; font-weight: 500; line-height: 1.45; letter-spacing: 0; text-transform: none; }
+.callbackModal .consentRow input, .form .consentRow input { width: 17px; height: 17px; min-height: 17px; margin: 1px 0 0; padding: 0; flex: 0 0 17px; accent-color: var(--orange); box-shadow: none; }
+.callbackModal .consentRow a, .form .consentRow a { color: #a83f00; text-decoration: underline; text-underline-offset: 2px; }
 
 .hero { min-height: max(780px, 100svh); position: relative; display: grid; grid-template-columns: 1fr; align-items: end; padding: 212px var(--pad) 76px; color: white; isolation: isolate; }
 .heroVideo, .heroPoster, .heroShade { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -345,10 +349,12 @@
 .backToTop:hover { transform: translateY(-4px); background: var(--orange-dark); }
 .backToTop:focus-visible { outline: 3px solid white; outline-offset: 3px; }
 
-.footer { min-height: 230px; padding: 46px var(--pad); display: grid; grid-template-columns: .8fr 1fr .55fr; align-items: start; gap: 50px; background: #0e0e0e; color: white; }
+.footer { min-height: 260px; padding: 46px var(--pad); display: grid; grid-template-columns: .7fr 1fr .55fr 1.05fr; align-items: start; gap: clamp(28px, 4vw, 58px); background: #0e0e0e; color: white; }
 .footer > p { max-width: 420px; margin: 6px 0 0; color: rgba(255,255,255,.5); font-size: 12px; line-height: 1.6; }
-.footer > div { display: grid; gap: 10px; font-weight: 750; }
-.footer > div a:last-child { color: var(--orange); }
+.footerContacts { display: grid; gap: 10px; font-weight: 750; }
+.footerContacts a:last-child { color: var(--orange); }
+.footerLegal { display: grid; gap: 12px; color: rgba(255,255,255,.66); font-size: 11px; line-height: 1.4; }
+.footerLegal a:hover { color: var(--orange); }
 .footer > small { grid-column: 1 / -1; align-self: end; color: rgba(255,255,255,.35); font-size: 9px; line-height: 1.5; }
 .footer > small a { text-decoration: underline; }
 

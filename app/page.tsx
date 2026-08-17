@@ -1,11 +1,13 @@
 "use client";
 
 import { FormEvent, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import styles from "./landing.module.css";
 
 const PHONE_DISPLAY = "+7 985 358-49-78";
 const PHONE_HREF = "tel:+79853584978";
 const TELEGRAM_PHONE = "79853584978";
+const CONSENT_VERSION = "17.08.2026";
 
 const services = [
   {
@@ -224,6 +226,7 @@ export default function Home() {
       `Как обращаться: ${form.get("name")}`,
       `Телефон: ${form.get("phone")}`,
       form.get("comment") ? `Комментарий: ${form.get("comment")}` : "",
+      `Согласие на обработку персональных данных: подтверждено отдельной отметкой в форме сайта (редакция ${CONSENT_VERSION}).`,
     ].filter(Boolean).join("\n");
 
     const destination = estimateMessenger === "whatsapp"
@@ -244,6 +247,7 @@ export default function Home() {
       "Здравствуйте! Закажите мне обратный звонок.",
       `Имя: ${form.get("callback-name")}`,
       `Телефон: ${form.get("callback-phone")}`,
+      `Согласие на обработку персональных данных: подтверждено отдельной отметкой в форме сайта (редакция ${CONSENT_VERSION}).`,
     ].join("\n");
 
     setCallbackOpen(false);
@@ -291,10 +295,11 @@ export default function Home() {
             <h2 id="callback-title">Оставьте номер — мы перезвоним</h2>
             <p>Уточним задачу и подскажем, какие данные нужны для предварительной оценки.</p>
             <form onSubmit={submitCallback}>
-              <label>Имя<input name="callback-name" type="text" placeholder="Алексей" required /></label>
-              <label>Номер телефона<input name="callback-phone" type="tel" placeholder="+7 999 000-00-00" required /></label>
+              <label>Имя<input name="callback-name" type="text" placeholder="Алексей" autoComplete="name" required /></label>
+              <label>Номер телефона<input name="callback-phone" type="tel" inputMode="tel" placeholder="+7 999 000-00-00" autoComplete="tel" required /></label>
+              <label className={styles.consentRow}><input name="callback-consent" type="checkbox" required /><span>Даю <Link href="/consent" target="_blank" rel="noopener noreferrer">согласие на обработку персональных данных</Link>.</span></label>
               <button type="submit">Оставить заявку</button>
-              <small>После нажатия откроется Telegram с готовой заявкой.</small>
+              <small>После нажатия откроется Telegram с готовой заявкой. <Link href="/privacy" target="_blank" rel="noopener noreferrer">Политика конфиденциальности</Link>.</small>
             </form>
           </section>
         </div>
@@ -446,8 +451,8 @@ export default function Home() {
             <label>Адрес или район<input name="location" placeholder="Москва, САО" required /></label>
           </div>
           <div className={styles.formRow}>
-            <label>Как обращаться<input name="name" placeholder="Алексей" required /></label>
-            <label>Ваш телефон<input name="phone" type="tel" placeholder="+7 999 000-00-00" required /></label>
+            <label>Как обращаться<input name="name" placeholder="Алексей" autoComplete="name" required /></label>
+            <label>Ваш телефон<input name="phone" type="tel" inputMode="tel" placeholder="+7 999 000-00-00" autoComplete="tel" required /></label>
           </div>
           <fieldset>
             <legend>Нужен вывоз мусора?</legend>
@@ -462,8 +467,9 @@ export default function Home() {
             <label><input type="radio" name="messenger" value="max" checked={estimateMessenger === "max"} onChange={() => setEstimateMessenger("max")} /> MAX</label>
           </fieldset>
           <label>Комментарий<textarea name="comment" placeholder="Что нужно сохранить, этаж, есть ли грузовой лифт…" /></label>
+          <label className={styles.consentRow}><input name="estimate-consent" type="checkbox" required /><span>Даю <Link href="/consent" target="_blank" rel="noopener noreferrer">согласие на обработку персональных данных</Link>.</span></label>
           <button className={styles.formButton} type="submit">Открыть заявку в {estimateMessenger === "whatsapp" ? "WhatsApp" : estimateMessenger === "max" ? "MAX" : "Telegram"} <span>↗</span></button>
-          <small>{openedMessenger ? `${openedMessenger} открыт. Текст заявки уже подготовлен.` : "Выберите удобный мессенджер. Сообщение отправится только после вашего подтверждения."}</small>
+          <small>{openedMessenger ? `${openedMessenger} открыт. Текст заявки уже подготовлен.` : "Выберите удобный мессенджер. Сообщение отправится только после вашего подтверждения."} <Link href="/privacy" target="_blank" rel="noopener noreferrer">Политика конфиденциальности</Link>.</small>
         </form>
       </section>
 
@@ -599,8 +605,15 @@ export default function Home() {
           <span className={styles.brandText}>Демонтаж<br /><span>под ключ</span></span>
         </a>
         <p>Демонтаж квартир, коммерческих помещений и отдельных конструкций в Москве и Московской области.</p>
-        <div><a href={PHONE_HREF}>{PHONE_DISPLAY}</a><a href={directTelegram} target="_blank" rel="noreferrer">Telegram ↗</a></div>
-        <small>© 2026 · Фотографии выполненных объектов — из архива бригады. Иллюстрации отдельных инструментов подготовлены для сайта.</small>
+        <div className={styles.footerContacts}><a href={PHONE_HREF}>{PHONE_DISPLAY}</a><a href={directTelegram} target="_blank" rel="noreferrer">Telegram ↗</a></div>
+        <nav className={styles.footerLegal} aria-label="Правовая информация">
+          <Link href="/legal">Реквизиты и правовая информация</Link>
+          <Link href="/privacy">Политика конфиденциальности</Link>
+          <Link href="/consent">Согласие на обработку персональных данных</Link>
+          <Link href="/terms">Условия использования сайта</Link>
+          <Link href="/cookies">Cookies и технические данные</Link>
+        </nav>
+        <small>© 2026 · Информация и цены не являются публичной офертой. Фотографии выполненных объектов — из архива бригады. Иллюстрации отдельных инструментов подготовлены для сайта.</small>
       </footer>
     </main>
   );

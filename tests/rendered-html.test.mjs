@@ -39,6 +39,11 @@ test("renders the demolition landing page", async () => {
   assert.match(html, /data-price="от 499 ₽ \/ м²"/);
   assert.match(html, /data-price="от 35 900 ₽"/);
   assert.match(html, /data-price="от 19 999 ₽"/);
+  assert.match(html, /data-price="от 699 ₽ \/ м²"/);
+  assert.match(html, /data-price="от 699 ₽"/);
+  assert.match(html, /data-price="от 999 ₽ \/ м²"/);
+  assert.match(html, /data-price="от 1 199 ₽ \/ метр"/);
+  assert.match(html, /data-price="от 799 ₽ \/ м²"/);
   assert.doesNotMatch(html, /Объекты \/ 05|id="projects"/);
   assert.match(html, /500\+/);
   assert.match(html, /выполненных объектов в Москве и Московской области/);
@@ -92,6 +97,13 @@ test("renders the demolition landing page", async () => {
   assert.doesNotMatch(html, /Промышленные пылесосы/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
   assert.match(html, /Квартир и коммерческих помещений/);
+  assert.match(html, /согласие на обработку персональных данных/);
+  assert.match(html, /href="\/consent"/);
+  assert.match(html, /href="\/privacy"/);
+  assert.match(html, /href="\/legal"/);
+  assert.match(html, /href="\/terms"/);
+  assert.match(html, /href="\/cookies"/);
+  assert.match(html, /Информация и цены не являются публичной офертой/);
 
   const processPosition = html.indexOf("Порядок оказания услуг");
   const servicesPosition = html.indexOf("Наши услуги демонтажа");
@@ -112,11 +124,49 @@ test("renders the demolition landing page", async () => {
   assert.ok(reviewsPosition < toolsPosition);
 });
 
+test("renders separate legal documents", async () => {
+  const privacy = await render("/privacy");
+  assert.equal(privacy.status, 200);
+  const privacyHtml = await privacy.text();
+  assert.match(privacyHtml, /Политика конфиденциальности и обработки персональных данных/);
+  assert.match(privacyHtml, /Сайт не отправляет заполненные поля в собственную базу данных/);
+  assert.match(privacyHtml, /не обрабатывает специальные категории персональных данных или биометрические данные/);
+  assert.match(privacyHtml, /Роскомнадзоре или в суде/);
+
+  const consent = await render("/consent");
+  assert.equal(consent.status, 200);
+  const consentHtml = await consent.text();
+  assert.match(consentHtml, /Согласие на обработку персональных данных/);
+  assert.match(consentHtml, /конкретное, предметное, информированное/);
+  assert.match(consentHtml, /Редакция согласия: 17\.08\.2026/);
+  assert.match(consentHtml, /не даю согласия на распространение персональных данных/);
+
+  const legal = await render("/legal");
+  assert.equal(legal.status, 200);
+  const legalHtml = await legal.text();
+  assert.match(legalHtml, /Реквизиты и условия оказания услуг/);
+  assert.match(legalHtml, /не являются публичной офертой/);
+  assert.match(legalHtml, /Как заключается договор/);
+
+  const terms = await render("/terms");
+  assert.equal(terms.status, 200);
+  const termsHtml = await terms.text();
+  assert.match(termsHtml, /Пользовательское соглашение/);
+  assert.match(termsHtml, /Заявка не является акцептом оферты/);
+
+  const cookies = await render("/cookies");
+  assert.equal(cookies.status, 200);
+  const cookiesHtml = await cookies.text();
+  assert.match(cookiesHtml, /Cookies и технические данные/);
+  assert.match(cookiesHtml, /не устанавливает собственные аналитические или рекламные cookies/);
+});
+
 test("renders the CRM prototype", async () => {
   const response = await render("/crm");
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /Сводка бизнеса/);
+  assert.match(html, /noindex/);
   assert.match(html, /ОТКРЫТЬ ВОРОНКУ/);
   assert.match(html, /Обзор/);
   assert.match(html, /Лиды/);
@@ -132,6 +182,7 @@ test("renders the map lead parser", async () => {
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /Поиск клиентов/);
+  assert.match(html, /noindex/);
   assert.match(html, /НАЙТИ КЛИЕНТОВ/);
   assert.match(html, /Демо/);
   assert.match(html, /Строительные компании/);
