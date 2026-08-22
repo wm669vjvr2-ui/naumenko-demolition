@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useRef, useState } from "react";
+import { FormEvent, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import styles from "./landing.module.css";
 
@@ -8,6 +8,10 @@ const PHONE_DISPLAY = "+7 985 358-49-78";
 const PHONE_HREF = "tel:+79853584978";
 const TELEGRAM_PHONE = "79853584978";
 const CONSENT_VERSION = "17.08.2026";
+const COOKIE_PREFERENCE_VERSION = "22.08.2026";
+const COOKIE_PREFERENCE_KEY = "naumenko_cookie_preference";
+const COOKIE_PREFERENCE_EVENT = "naumenko-cookie-preference";
+let volatileCookiePreferenceVersion: string | null = null;
 
 const services = [
   {
@@ -181,6 +185,47 @@ function maxUrl(text: string) {
   return `https://max.ru/:share?text=${encodeURIComponent(text)}`;
 }
 
+function subscribeCookiePreference(callback: () => void) {
+  window.addEventListener(COOKIE_PREFERENCE_EVENT, callback);
+  window.addEventListener("storage", callback);
+  return () => {
+    window.removeEventListener(COOKIE_PREFERENCE_EVENT, callback);
+    window.removeEventListener("storage", callback);
+  };
+}
+
+function cookiePreferencePending() {
+  try {
+    const saved = JSON.parse(window.localStorage.getItem(COOKIE_PREFERENCE_KEY) || "null") as { version?: string } | null;
+    return saved?.version !== COOKIE_PREFERENCE_VERSION && volatileCookiePreferenceVersion !== COOKIE_PREFERENCE_VERSION;
+  } catch {
+    return volatileCookiePreferenceVersion !== COOKIE_PREFERENCE_VERSION;
+  }
+}
+
+function saveCookiePreference(choice: "accepted" | "necessary") {
+  volatileCookiePreferenceVersion = COOKIE_PREFERENCE_VERSION;
+  try {
+    window.localStorage.setItem(
+      COOKIE_PREFERENCE_KEY,
+      JSON.stringify({ choice, version: COOKIE_PREFERENCE_VERSION }),
+    );
+  } catch {
+    // The in-memory preference still dismisses the notice for the current page.
+  }
+  window.dispatchEvent(new Event(COOKIE_PREFERENCE_EVENT));
+}
+
+function reopenCookiePreferences() {
+  volatileCookiePreferenceVersion = null;
+  try {
+    window.localStorage.removeItem(COOKIE_PREFERENCE_KEY);
+  } catch {
+    // The custom event still reopens the notice when storage is unavailable.
+  }
+  window.dispatchEvent(new Event(COOKIE_PREFERENCE_EVENT));
+}
+
 export default function Home() {
   const [selectedService, setSelectedService] = useState(services[4].title);
   const [estimateMessenger, setEstimateMessenger] = useState<"telegram" | "whatsapp" | "max">("telegram");
@@ -188,6 +233,11 @@ export default function Home() {
   const [callbackOpen, setCallbackOpen] = useState(false);
   const [serviceSlide, setServiceSlide] = useState(0);
   const serviceTouchStart = useRef<number | null>(null);
+  const showCookieNotice = useSyncExternalStore(
+    subscribeCookiePreference,
+    cookiePreferencePending,
+    () => true,
+  );
 
   const directTelegram = useMemo(
     () => telegramUrl("Здравствуйте! Хочу рассчитать стоимость демонтажа. Подскажите, какие фото и данные прислать?"),
@@ -596,6 +646,34 @@ export default function Home() {
         </div>
       </section>
 
+      {showCookieNotice && (
+        <section
+          className={styles.cookieNotice}
+          role="dialog"
+          aria-labelledby="cookie-title"
+          aria-describedby="cookie-description"
+        >
+          <div>
+            <span>Конфиденциальность</span>
+            <h2 id="cookie-title">Cookies и персональные данные</h2>
+            <p id="cookie-description">
+              Сайт использует только необходимые технические данные для корректной работы.
+              Рекламные и аналитические cookies не установлены. Согласие на обработку данных
+              заявки запрашивается отдельно перед её отправкой.
+            </p>
+            <nav aria-label="Документы о конфиденциальности">
+              <Link href="/cookies">О cookies</Link>
+              <Link href="/privacy">Политика конфиденциальности</Link>
+              <Link href="/consent">Согласие на обработку данных</Link>
+            </nav>
+          </div>
+          <div className={styles.cookieActions}>
+            <button type="button" onClick={() => saveCookiePreference("accepted")}>Принять</button>
+            <button type="button" onClick={() => saveCookiePreference("necessary")}>Только необходимые</button>
+          </div>
+        </section>
+      )}
+
       <a className={styles.backToTop} href="#top" aria-label="Вернуться наверх">
         <span aria-hidden="true">↑</span>
       </a>
@@ -612,6 +690,7 @@ export default function Home() {
           <Link href="/consent">Согласие на обработку персональных данных</Link>
           <Link href="/terms">Условия использования сайта</Link>
           <Link href="/cookies">Cookies и технические данные</Link>
+          <button className={styles.footerCookieButton} type="button" onClick={reopenCookiePreferences}>Настройки cookies</button>
         </nav>
         <small>© 2026 · Информация и цены не являются публичной офертой. Фотографии выполненных объектов — из архива бригады. Иллюстрации отдельных инструментов подготовлены для сайта.</small>
       </footer>

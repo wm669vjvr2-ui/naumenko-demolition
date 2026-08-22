@@ -103,6 +103,10 @@ test("renders the demolition landing page", async () => {
   assert.match(html, /href="\/legal"/);
   assert.match(html, /href="\/terms"/);
   assert.match(html, /href="\/cookies"/);
+  assert.match(html, /Cookies и персональные данные/);
+  assert.match(html, /Только необходимые/);
+  assert.match(html, /Настройки cookies/);
+  assert.match(html, /Согласие на обработку данных заявки запрашивается отдельно/);
   assert.match(html, /Информация и цены не являются публичной офертой/);
 
   const processPosition = html.indexOf("Порядок оказания услуг");
@@ -159,6 +163,8 @@ test("renders separate legal documents", async () => {
   const cookiesHtml = await cookies.text();
   assert.match(cookiesHtml, /Cookies и технические данные/);
   assert.match(cookiesHtml, /не устанавливает собственные аналитические или рекламные cookies/);
+  assert.match(cookiesHtml, /сохраняет сделанный выбор только в локальном хранилище браузера/);
+  assert.match(cookiesHtml, /Этот выбор не заменяет отдельное согласие на обработку персональных данных/);
 });
 
 test("renders the CRM prototype", async () => {
