@@ -74,7 +74,7 @@ test("renders the demolition landing page", async () => {
   assert.match(html, /Отбойные молотки/);
   assert.match(html, /Большие и малые болгарки/);
   assert.match(html, /Перфораторы/);
-  assert.match(html, /Сабельные пилы/);
+  assert.doesNotMatch(html, /Сабельные пилы/);
   assert.match(html, /Кувалды/);
   assert.doesNotMatch(html, /Резка с пылеудалением/);
   assert.match(html, /Куда отправить заявку\?/);
