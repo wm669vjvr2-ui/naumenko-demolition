@@ -25,7 +25,7 @@ const stages = [
 const initialDeals: Deal[] = [
   { id: 1048, stage: "new", title: "Демонтаж квартиры 68 м²", contact: "Алексей Морозов", phone: "+7 999 410-22-18", amount: 182000, source: "Сайт", task: "Перезвонить в течение 5 минут", date: "сегодня, 12:43" },
   { id: 1047, stage: "new", title: "Снести перегородку", contact: "Марина", phone: "+7 926 810-03-55", amount: 38000, source: "Авито", task: "Уточнить материал стены", date: "сегодня, 11:19" },
-  { id: 1043, stage: "contact", title: "Офис после арендатора", contact: "ООО «Сфера»", phone: "+7 495 170-42-11", amount: 315000, source: "Яндекс", task: "Запросить план помещения", date: "вчера, 18:10" },
+  { id: 1043, stage: "contact", title: "Коммерческое помещение после арендатора", contact: "ООО «Сфера»", phone: "+7 495 170-42-11", amount: 315000, source: "Яндекс", task: "Запросить план помещения", date: "вчера, 18:10" },
   { id: 1040, stage: "measure", title: "Дом 140 м² — полный разбор", contact: "Дмитрий К.", phone: "+7 903 544-11-70", amount: 680000, source: "Рекомендация", task: "Замер завтра в 10:00", date: "19 июл." },
   { id: 1038, stage: "measure", title: "Демонтаж стяжки 92 м²", contact: "Ирина Романова", phone: "+7 916 333-18-21", amount: 126000, source: "Сайт", task: "Инженер: Александр Науменко", date: "18 июл." },
   { id: 1032, stage: "estimate", title: "Магазин 340 м²", contact: "Андрей / Retail Group", phone: "+7 985 311-88-09", amount: 890000, source: "Повторный", task: "Дожать согласование сметы", date: "17 июл." },
