@@ -20,8 +20,6 @@
 .content dl div { display: grid; grid-template-columns: minmax(165px, .35fr) 1fr; gap: 24px; padding-bottom: 14px; border-bottom: 1px solid rgba(21,21,21,.1); }
 .content dt { font-size: 12px; font-weight: 850; text-transform: uppercase; }
 .content dd { margin: 0; }
-.notice { padding: 20px !important; border: 1px solid rgba(217,79,0,.35) !important; background: rgba(243,107,18,.08); }
-.notice strong { color: #a23b00; }
 .footer { min-height: 120px; padding: 34px clamp(20px, 5vw, 78px); display: flex; align-items: center; justify-content: space-between; gap: 24px; background: #111; color: white; font-size: 13px; font-weight: 750; }
 
 @media (max-width: 620px) {

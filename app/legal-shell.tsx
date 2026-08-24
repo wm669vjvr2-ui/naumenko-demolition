@@ -8,7 +8,7 @@ type LegalShellProps = {
   children: React.ReactNode;
 };
 
-export default function LegalShell({ eyebrow, title, updated = "17 августа 2026 года", children }: LegalShellProps) {
+export default function LegalShell({ eyebrow, title, updated = "24 августа 2026 года", children }: LegalShellProps) {
   return (
     <main className={styles.page}>
       <header className={styles.header}>

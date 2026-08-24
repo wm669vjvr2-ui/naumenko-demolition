@@ -136,14 +136,18 @@ test("renders separate legal documents", async () => {
   assert.match(privacyHtml, /Сайт не отправляет заполненные поля в собственную базу данных/);
   assert.match(privacyHtml, /не обрабатывает специальные категории персональных данных или биометрические данные/);
   assert.match(privacyHtml, /Роскомнадзоре или в суде/);
+  assert.match(privacyHtml, /индивидуальный предприниматель Науменко Александр Евгеньевич/);
+  assert.match(privacyHtml, /ИНН 540449840082, ОГРНИП 326547600016170/);
+  assert.match(privacyHtml, /ул\. Станиславского, д\. 15, кв\. 195/);
 
   const consent = await render("/consent");
   assert.equal(consent.status, 200);
   const consentHtml = await consent.text();
   assert.match(consentHtml, /Согласие на обработку персональных данных/);
   assert.match(consentHtml, /конкретное, предметное, информированное/);
-  assert.match(consentHtml, /Редакция согласия: 17\.08\.2026/);
+  assert.match(consentHtml, /Редакция согласия: 24\.08\.2026/);
   assert.match(consentHtml, /не даю согласия на распространение персональных данных/);
+  assert.match(consentHtml, /ИНН 540449840082, ОГРНИП 326547600016170/);
 
   const legal = await render("/legal");
   assert.equal(legal.status, 200);
@@ -151,12 +155,17 @@ test("renders separate legal documents", async () => {
   assert.match(legalHtml, /Реквизиты и условия оказания услуг/);
   assert.match(legalHtml, /не являются публичной офертой/);
   assert.match(legalHtml, /Как заключается договор/);
+  assert.match(legalHtml, /Индивидуальный предприниматель Науменко Александр Евгеньевич/);
+  assert.match(legalHtml, /Межрайонная инспекция Федеральной налоговой службы № 16 по Новосибирской области/);
+  assert.doesNotMatch(legalHtml, /расч[её]тный сч[её]т|БИК|корреспондентский сч[её]т|ТБанк/i);
 
   const terms = await render("/terms");
   assert.equal(terms.status, 200);
   const termsHtml = await terms.text();
   assert.match(termsHtml, /Пользовательское соглашение/);
   assert.match(termsHtml, /Заявка не является акцептом оферты/);
+  assert.match(termsHtml, /индивидуальный предприниматель Науменко Александр Евгеньевич/);
+  assert.doesNotMatch(termsHtml, /банковские реквизиты/);
 
   const cookies = await render("/cookies");
   assert.equal(cookies.status, 200);
